@@ -162,6 +162,28 @@ function App() {
         </div>
       </div>
     </section>
+
+    <footer className='bg-primary text-light'>
+      <div className="myContainer py-20 ">
+        <div className="wrapper grid grid-cols-3">
+          <div className="socialsLinks">
+            
+          </div>
+          <div className="services text-center">
+            <p class="font-semibold mb-4">SERVICES WE OFFER</p>
+            <ul className='text-[11px] [&>li]:my-2'>
+              <li>Web Solution</li>
+              <li>Virtual Assistant Solutions</li>
+              <li>Accounting Solutions</li>
+              <li className='!mb-0'>Learning Center Solutions</li>
+            </ul>
+          </div>
+          <div className="contactDetails">
+
+          </div>
+        </div>
+      </div>
+    </footer>
     </>
   )
 }
