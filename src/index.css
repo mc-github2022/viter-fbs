@@ -29,3 +29,8 @@ html {
     @apply inline-block rounded-full py-[13px] px-[25px] bg-primary text-light outline-1 border-primary border outline-light hover:bg-customGray transition-all hover:text-dark hover:border-dark hover:border
   }
 }
+
+.serviceBg {
+  background-image: url('/public/webServicesBg.jpg');
+  object-fit: cover;
+}
