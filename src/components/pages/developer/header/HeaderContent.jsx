@@ -4,6 +4,8 @@ import React from 'react'
 import ModalEditBannerContent from './ModalEditBannerContent'
 
 const HeaderContent = () => {
+  const [content, setContent] = React.useState(false);
+  const handleOpen = () => setContent(true);
   return (
     <>
       <header className='py-2.5'>
@@ -30,7 +32,7 @@ const HeaderContent = () => {
         <div className="wrapper grid md:grid-cols-2 place-items-center  px-4">
           <div className="bannerText relative">
             <div className='absolute right-0'>
-              <PopupButton />
+              <PopupButton fn={handleOpen}/>
             </div>
             <h2 className='bannerTitle text-3xl mb-8 text-dark'>Excellence in <b>Managed Services</b> and <b>Web Solutions</b></h2>
             <p className='bannerDesc mb-8'>
@@ -45,7 +47,7 @@ const HeaderContent = () => {
       </div>
     </section>
 
-    <ModalEditBannerContent />
+    {content && <ModalEditBannerContent close={setContent}/> }
     </>
   )
 }
