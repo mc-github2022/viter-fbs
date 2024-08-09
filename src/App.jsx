@@ -1,20 +1,29 @@
-import { useState } from 'react'
-import './index.css'
-import Home from './components/pages/website/Home';
-import { Routes , Route } from 'react-router-dom';
-import Admin from './components/pages/admin/Admin';
-
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { StoreProvider } from "./components/store/StoreContext";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import PageNotFound from "./components/partials/PageNotFound";
+import { routesSystem } from "./routes/RouterSystem";
 
 function App() {
+  const queryClient = new QueryClient();
 
   return (
     <>
-     <Routes>
-      <Route path="/home" element={<Home />} />
-      <Route path="/admin" element={<Admin />} />
-     </Routes>
+      <QueryClientProvider client={queryClient}>
+        <StoreProvider>
+          <Router>
+            <Routes>
+              <Route path={`*`} element={<PageNotFound />} />
+
+              {routesSystem.map(({ ...routeProps }, key) => {
+                return <Route key={key} {...routeProps} />;
+              })}
+            </Routes>
+          </Router>
+        </StoreProvider>
+      </QueryClientProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

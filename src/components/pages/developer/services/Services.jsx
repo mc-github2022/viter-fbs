@@ -1,16 +1,17 @@
 import React from 'react'
-import Navigation from './DashBoardNav'
-import logo from "/logo.png"
-import Header from '../website/sections/header/Header'
+import ServicesContent from './ServicesContent'
+import { devBaseImgUrl } from '@/components/helpers/functions-general'
+import DashBoardNav from '../../admin/DashBoardNav'
 
-const Admin = () => {
+const Services = () => {
   return (
-    <div className="wrapper grid grid-cols-[250px_1fr]">
+    <>
+       <div className="wrapper grid grid-cols-[250px_1fr]">
         <div className="theNav w-[250px] h-screen p-4 border-r-2 border-customGray">
             <div className="theLogo">
-                <img src={logo} alt="" className='mb-12 '/>
+                <img src={`${devBaseImgUrl}/logo.png`} alt="" className='mb-12 '/>
             </div>
-            <Navigation />
+            <DashBoardNav />
         </div>
         <div className="main w-full">
             <div className="profileHeader p-4 border-b-2 border-customGray h-[80px] grid items-center">
@@ -22,11 +23,12 @@ const Admin = () => {
                 </div>
             </div>
             <div className='thePage p-8'>
-                <Header />
+                <ServicesContent />
             </div>
         </div>
     </div>
+    </>
   )
 }
 
-export default Admin
+export default Services
