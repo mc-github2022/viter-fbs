@@ -14,7 +14,10 @@ const HeaderContent = () => {
           <div className="theLogo ">
             <img src={`${devBaseImgUrl}/logo.png`} alt="" />
           </div>
-          <div className="headerNav">
+          <div className="headerNav relative">
+            <div className='absolute right-0 top-[-20px]'>
+              <PopupButton fn={handleOpen}/>
+            </div>
             <ul className='flex [&>li>a]:p-4'>
               <li><a href="#home">HOME</a></li>
               <li><a href="#about">ABOUT</a></li>
