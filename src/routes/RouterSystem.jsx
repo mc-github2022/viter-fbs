@@ -28,7 +28,7 @@ export const routesSystem = [
     element: <Activities />,
   },
   {
-    path: `${devNavUrl}/front-page`,
+    path: `${devNavUrl}/`,
     element: <Home />,
   },
 ];

@@ -12,13 +12,22 @@
 }
 
 html {
-  font-size: 16px;
+  font-size: 14px;
   scroll-behavior: smooth;
 }
 
 @layer base {
   body {
     @apply font-montserrat
+  }
+  input[type=text]:focus {
+    @apply outline-none
+  }
+  input[type=text]{
+    @apply p-1  text-sm
+  }
+  textarea:focus {
+    @apply outline-none p-1 text-sm
   }
 }
 
@@ -29,12 +38,23 @@ html {
   .btn {
     @apply inline-block rounded-full py-[13px] px-[25px] bg-primary text-light outline-1 border-primary border outline-light hover:bg-customGray transition-all hover:text-dark hover:border-dark hover:border
   }
+
+  .btn-light {
+    @apply inline-block rounded-full py-[13px] px-[25px] bg-light text-dark outline-1 border-primary border outline-light hover:bg-customGray transition-all hover:text-dark hover:border-dark hover:border
+  }
+
   .nav ul li {
     @apply hover:bg-customGray rounded-md hover:shadow-inner cursor-pointer
   }
+  .nav ul li a{
+    @apply w-full
+  }
+  .btnImgUpload button{
+    @apply text-2xl text-light bg-dark bg-opacity-50 transition-all opacity-0 group-hover:opacity-100 w-full grid place-items-center h-full absolute top-0 left-0
+  }
 }
 
-@media screen and (max-height:600px) {
+@media screen and (max-height:720px) {
   .modal {
     @apply  overflow-y-scroll
   }

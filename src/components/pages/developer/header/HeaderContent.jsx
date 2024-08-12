@@ -2,21 +2,30 @@ import { devBaseImgUrl } from '@/components/helpers/functions-general'
 import PopupButton from '@/components/partials/popup/PopupButton'
 import React from 'react'
 import ModalEditBannerContent from './ModalEditBannerContent'
+import ModalEditHeaderContent from './ModalEditHeaderContent'
+import { MdOutlineFileUpload } from 'react-icons/md'
 
 const HeaderContent = () => {
   const [content, setContent] = React.useState(false);
   const handleOpen = () => setContent(true);
+
+  const [menu, setMenu] = React.useState(false);
+  const handleModalMenu = () => setMenu(true);
+
   return (
     <>
       <header className='py-2.5'>
       <div className="max-w-[100px] lg:myContainer">
         <div className="wrapper flex items-center justify-between">
-          <div className="theLogo ">
+          <div className="theLogo  relative group">
             <img src={`${devBaseImgUrl}/logo.png`} alt="" />
+            <div className='btnImgUpload'>
+              <button><MdOutlineFileUpload /></button>
+            </div>
           </div>
           <div className="headerNav relative">
             <div className='absolute right-0 top-[-20px]'>
-              <PopupButton fn={handleOpen}/>
+              <PopupButton fn={handleModalMenu}/>
             </div>
             <ul className='flex [&>li>a]:p-4'>
               <li><a href="#home">HOME</a></li>
@@ -32,7 +41,7 @@ const HeaderContent = () => {
 
     <section className="heroBanner py-20 bg-customGray">
       <div className="container lg:myContainer">
-        <div className="wrapper grid md:grid-cols-2 place-items-center  px-4">
+        <div className="wrapper grid md:grid-cols-2 gap-4 place-items-center  px-4">
           <div className="bannerText relative">
             <div className='absolute right-0'>
               <PopupButton fn={handleOpen}/>
@@ -43,14 +52,18 @@ const HeaderContent = () => {
             </p>
             <a href="#" className='btn'>Our Services</a>
           </div>
-          <div className='grid place-items-center'>
+          <div className='grid place-items-center relative group'>
             <img src={`${devBaseImgUrl}/fbs-banner-bg.png`} alt="" />
+            <div className='btnImgUpload'>
+              <button><MdOutlineFileUpload /></button>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     {content && <ModalEditBannerContent close={setContent}/> }
+    {menu && <ModalEditHeaderContent close={setMenu}/> }
     </>
   )
 }

@@ -2,7 +2,7 @@ import { devNavUrl } from '@/components/helpers/functions-general'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const DashBoardNav = () => {
+const DashBoardNav = ({menu}) => {
 
   const links = [
     {
@@ -31,9 +31,23 @@ const DashBoardNav = () => {
     <>
       <div className="nav">
         <ul className='[&>li]:py-2 [&>li]:px-2'>
-            {links.map((link,key)=>
-              <li key={key}><Link to={`${devNavUrl}/system/${link.url}`}>{link.title}</Link></li>
-            )}
+        {links.map((link, key) => {
+              return (
+                <li
+                  key={key}
+                  className={`${
+                    menu === link.title.toLowerCase() ? "bg-customGray" : ""
+                  } `}
+                >
+                  <Link
+                    className="py-3"
+                    to={`${devNavUrl}/system/${link.url}`}
+                  >
+                    {link.title}
+                  </Link>
+                </li>
+              );
+            })}
         </ul>
       </div>
     </>

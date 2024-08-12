@@ -1,10 +1,19 @@
+import PopupButton from '@/components/partials/popup/PopupButton'
 import React from 'react'
+import ModalEditAboutContent from './ModalEditAboutContent';
 
 const AboutContent = () => {
+
+  const [aboutContent, setAboutContent] = React.useState(false);
+  const handleModalAbout = () => setAboutContent(true);
+
   return (
     <>
-    <section id="about" className="about text-center py-20">
-      <div className="container lg:myContainer">
+    <section id="about" className="about text-center py-20 relative">
+      <div className="container lg:myContainer relative">
+        <div className='absolute right-0 top-[-20px]'>
+          <PopupButton fn={handleModalAbout}/>
+        </div>
         <h2 className='aboutTitle text-3xl font-bold text-dark'>Who We Are?</h2>
         <h2 className='aboutTitleB text-3xl mb-8'>What We Do?</h2>
         <p className='mb-8'>
@@ -13,6 +22,8 @@ const AboutContent = () => {
       </div>
       <a href="#" className='btn'>Watch Video</a>
     </section>
+
+    {aboutContent && <ModalEditAboutContent close={setAboutContent}/> }
     </>
   )
 }

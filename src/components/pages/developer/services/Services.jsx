@@ -1,17 +1,19 @@
 import React from 'react'
 import ServicesContent from './ServicesContent'
 import { devBaseImgUrl } from '@/components/helpers/functions-general'
-import DashBoardNav from '../../admin/DashBoardNav'
+import DashBoardNav from '@/components/partials/DashBoardNav'
 
 const Services = () => {
   return (
     <>
-       <div className="wrapper grid grid-cols-[250px_1fr]">
+    <div className="wrapper grid grid-cols-[250px_1fr]">
         <div className="theNav w-[250px] h-screen p-4 border-r-2 border-customGray">
-            <div className="theLogo">
-                <img src={`${devBaseImgUrl}/logo.png`} alt="" className='mb-12 '/>
+            <div className="theLogo mb-14">
+                {/* <img src={`${devBaseImgUrl}/logo.png`} alt="" className='mb-12 '/> */}
+                <h2 className='text-3xl'>Company Name</h2>
+                <h3>Single Page Website</h3>
             </div>
-            <DashBoardNav />
+            <DashBoardNav menu="services"/>
         </div>
         <div className="main w-full">
             <div className="profileHeader p-4 border-b-2 border-customGray h-[80px] grid items-center">
