@@ -13,7 +13,7 @@ const Footer = () => {
                 <h2 className='text-3xl'>Company Name</h2>
                 <h3>Single Page Website</h3>
             </div>
-            <DashBoardNav menu="about" />
+            <DashBoardNav menu="footer" />
         </div>
         <div className="main w-full">
             <div className="profileHeader p-4 border-b-2 border-customGray h-[80px] grid items-center">

@@ -30,7 +30,7 @@ const DashBoardNav = ({menu}) => {
   return (
     <>
       <div className="nav">
-        <ul className='[&>li]:py-2 [&>li]:px-2'>
+        <ul className='[&>li>a]:py-2 [&>li>a]:px-2'>
             {links.map((link,key)=>
               <li key={key}  className={`${
                 menu === link.title.toLowerCase() ? "bg-customGray" : ""

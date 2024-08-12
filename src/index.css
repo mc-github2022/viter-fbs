@@ -47,7 +47,7 @@ html {
     @apply hover:bg-customGray rounded-md hover:shadow-inner cursor-pointer
   }
   .nav ul li a{
-    @apply w-full
+    @apply w-full block
   }
   .btnImgUpload button{
     @apply text-2xl text-light bg-dark bg-opacity-50 transition-all opacity-0 group-hover:opacity-100 w-full grid place-items-center h-full absolute top-0 left-0
