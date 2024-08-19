@@ -6,6 +6,7 @@ import ModalEditActivitiesItemA from "./ModalEditActivitiesItemA";
 import ModalEditActivitiesItemB from "./ModalEditActivitiesItemB";
 import ModalEditActivitiesItemC from "./ModalEditActivitiesItemC";
 import Tooltip from "@/components/partials/Tooltip";
+import ActivitiesLoader from "./ActivitiesLoader";
 
 const ActivitiesContent = () => {
   const [activitiesContent, setActivitiesContent] = React.useState(false);
@@ -120,6 +121,8 @@ const ActivitiesContent = () => {
           </div>
         </div>
       </section>
+
+      <ActivitiesLoader />
 
       {activitiesContent && (
         <ModalEditActivitiesContent close={setActivitiesContent} />

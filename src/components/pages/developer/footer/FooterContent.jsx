@@ -16,6 +16,7 @@ import ModalEditFooterSocial from "./ModalEditFooterSocial";
 import ModalEditFooterContact from "./ModalEditFooterContact";
 import ModalEditFooterService from "./ModalEditFooterService";
 import Tooltip from "@/components/partials/Tooltip";
+import FooterLoader from "./FooterLoader";
 
 const FooterContent = () => {
   const [footerSocial, setfooterSocial] = React.useState(false);
@@ -110,7 +111,7 @@ const FooterContent = () => {
                 <Tooltip text="Edit" />
               </div>
               <div>
-                <p class="font-semibold mb-4">CONTACT DETAILS</p>
+                <p className="font-semibold mb-4">CONTACT DETAILS</p>
                 <ul className="[&>li>p]:text-[11px] [&>li]:flex [&>li]:gap-2 [&>li]:items-center [&>li]:mb-2 ">
                   <li>
                     <BsFillTelephoneFill /> <p> 049 501 3592</p>
@@ -138,6 +139,8 @@ const FooterContent = () => {
           </div>
         </div>
       </footer>
+
+      <FooterLoader />
 
       {footerSocial && <ModalEditFooterSocial close={setfooterSocial} />}
       {footerContact && <ModalEditFooterContact close={setfooterContact} />}
