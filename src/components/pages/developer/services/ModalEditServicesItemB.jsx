@@ -1,5 +1,7 @@
+import { devBaseImgUrl } from '@/components/helpers/functions-general'
 import React from 'react'
 import { IoMdClose } from 'react-icons/io'
+import { MdOutlineFileUpload } from 'react-icons/md'
 
 const ModalEditServicesItemB = ({close}) => {
     const handleClose =()=> close(false)
@@ -11,13 +13,29 @@ const ModalEditServicesItemB = ({close}) => {
             <button className="btnClose absolute right-5 top-5" onClick={handleClose}><IoMdClose /></button>
                 <div className=''>
                     <div>
+                        <div className='mb-4'>
+                            <label htmlFor="" className=''>Service Icon</label> <br />
+                            <div className='relative group'>
+                                <img src={`${devBaseImgUrl}/vaIcon.png`} className='h-[175px] w-full object-cover' alt="" />
+                                <div className='btnImgUpload'>
+                                    <button><MdOutlineFileUpload /></button>
+                                </div>
+                            </div>
+                        </div>
                         <div className="inputGroup mb-4">
                             <label htmlFor="" className=''>Service Name</label> <br />
                             <input type="text" className='border-customGray border w-full h-[36px] mb-1' /> <br />
                         </div>
                         <div className="inputGroup mb-4">
-                            <label htmlFor="">Description</label> <br />
-                            <textarea name="" id="" className='border-customGray border w-full h-[150px]'></textarea>
+                            <label htmlFor="" className=''>Includes</label> <br />
+                            <input type="text" className='border-customGray border w-full h-[36px] mb-1' /> <br />
+                            <input type="text" className='border-customGray border w-full h-[36px] mb-1' /> <br />
+                            <input type="text" className='border-customGray border w-full h-[36px] mb-1' /> <br />
+                            <input type="text" className='border-customGray border w-full h-[36px] mb-1' /> <br />
+                            <input type="text" className='border-customGray border w-full h-[36px] mb-1' /> <br />
+                            <input type="text" className='border-customGray border w-full h-[36px] mb-1' /> <br />
+                            <input type="text" className='border-customGray border w-full h-[36px] mb-1' /> <br />
+                            <input type="text" className='border-customGray border w-full h-[36px] mb-1' /> <br />
                         </div>
                     </div>
                     <div className='btnUpdate absolute bottom-0 py-4 flex gap-2'>
