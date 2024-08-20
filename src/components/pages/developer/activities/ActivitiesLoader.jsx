@@ -8,7 +8,7 @@ const ActivitiesLoader = () => {
       <section id="events" className="events py-20 text-dark  relative">
         <div className="container lg:myContainer">
           <h2 className="text-3xl mb-12 text-center">
-            <Loader customCss="w-[300px] h-[30px] mx-auto" />
+            <Loader customCss="!w-[300px] h-[30px] mx-auto" />
           </h2>
           <div className="wrapper grid md:grid-cols-3 gap-8">
             <div className="eventsItem text-center  relative">
@@ -22,7 +22,7 @@ const ActivitiesLoader = () => {
                 <Loader customCss="w-[300px] h-[15px] mx-auto mb-4" />
                 <Loader customCss="w-[300px] h-[15px] mx-auto mb-4" />
                 <Loader customCss="w-[300px] h-[15px] mx-auto mb-8" />
-                <Loader customCss="w-[150px] h-[30px] mx-auto mb-8" />
+                <Loader customCss="lg:w-[150px] h-[30px] mx-auto mb-8" />
               </div>
             </div>
 
@@ -37,7 +37,7 @@ const ActivitiesLoader = () => {
                 <Loader customCss="w-[300px] h-[15px] mx-auto mb-4" />
                 <Loader customCss="w-[300px] h-[15px] mx-auto mb-4" />
                 <Loader customCss="w-[300px] h-[15px] mx-auto mb-8" />
-                <Loader customCss="w-[150px] h-[30px] mx-auto mb-8" />
+                <Loader customCss="lg:!w-[150px] h-[30px] mx-auto mb-8" />
               </div>
             </div>
 
@@ -52,7 +52,7 @@ const ActivitiesLoader = () => {
                 <Loader customCss="w-[300px] h-[15px] mx-auto mb-4" />
                 <Loader customCss="w-[300px] h-[15px] mx-auto mb-4" />
                 <Loader customCss="w-[300px] h-[15px] mx-auto mb-8" />
-                <Loader customCss="w-[150px] h-[30px] mx-auto mb-8" />
+                <Loader customCss="lg:!w-[150px] h-[30px] mx-auto mb-8" />
               </div>
             </div>
           </div>

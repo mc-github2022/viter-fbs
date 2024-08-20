@@ -15,6 +15,12 @@ const HeaderContent = () => {
   const [menu, setMenu] = React.useState(false);
   const handleModalMenu = () => setMenu(true);
 
+  const { data: headerContent } = useQueryData(
+    "/v2/header-content", // endpoint
+    "get", // method
+    "headerContent" // key
+  );
+
   return (
     <>
       <header className="py-2.5">
@@ -93,7 +99,9 @@ const HeaderContent = () => {
       </section>
 
       {content && <ModalEditBannerContent close={setContent} />}
-      {menu && <ModalEditHeaderContent close={setMenu} />}
+      {menu && (
+        <ModalEditHeaderContent close={setMenu} theContent={headerContent} />
+      )}
     </>
   );
 };

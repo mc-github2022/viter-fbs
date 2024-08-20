@@ -8,10 +8,10 @@ const HeaderLoader = () => {
         <div className="max-w-[100px] lg:myContainer">
           <div className="wrapper flex items-center justify-between">
             <div className="theLogo">
-              <Loader customCss="w-[180px] h-[52px]" />
+              <Loader customCss="lg:w-[180px] h-[52px]" />
             </div>
             <div>
-              <Loader customCss="w-[380px] h-[20px]" />
+              <Loader customCss="lg:w-[380px] h-[20px]" />
             </div>
           </div>
         </div>
@@ -20,15 +20,15 @@ const HeaderLoader = () => {
         <div className="container lg:myContainer">
           <div className="wrapper grid md:grid-cols-2 gap-4 place-items-center  px-4">
             <div className="bannerText relative">
-              <Loader customCss="mb-4 w-[500px] h-[30px]" />
-              <Loader customCss="mb-4 w-[500px] h-[15px]" />
-              <Loader customCss="mb-4 w-[500px] h-[15px]" />
-              <Loader customCss="mb-4 w-[500px] h-[15px]" />
-              <Loader customCss="mb-4 w-[500px] h-[15px]" />
-              <Loader customCss="mb-4 w-[100px] h-[30px]" />
+              <Loader customCss="mb-4 lg:w-[500px] h-[30px]" />
+              <Loader customCss="mb-4 lg:w-[500px] h-[15px]" />
+              <Loader customCss="mb-4 lg:w-[500px] h-[15px]" />
+              <Loader customCss="mb-4 lg:w-[500px] h-[15px]" />
+              <Loader customCss="mb-4 lg:w-[500px] h-[15px]" />
+              <Loader customCss="mb-4 lg:w-[100px] h-[30px]" />
             </div>
             <div className="grid place-items-center relative group">
-              <Loader customCss="w-[410px] h-[400px] mb-4" />
+              <Loader customCss="lg:w-[410px] h-[400px] mb-4" />
             </div>
           </div>
         </div>

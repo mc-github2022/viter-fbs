@@ -6,6 +6,8 @@ import HeaderLoader from "./HeaderLoader";
 
 const Header = () => {
   const [loading, setLoading] = React.useState(true);
+  const { store, dispatch } = React.useContext(StoreContext);
+  const [itemEdit, setItemEdit] = React.useState(null);
 
   useEffect(() => {
     setTimeout(() => {
