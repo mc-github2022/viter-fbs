@@ -47,7 +47,7 @@ class HeaderContent
             $sql = "update {$this->tblHeader} set ";
             $sql .= "header_banner_title = :header_banner_title, ";
             $sql .= "header_banner_text = :header_banner_text, ";
-            $sql .= "header_banner_btn_text = :header_banner_btn_text ";
+            $sql .= "header_banner_btn_text = :header_banner_btn_text, ";
             $sql .= "header_banner_btn_link = :header_banner_btn_link ";
             $sql .= "where header_id = :header_id ";
             $query = $this->connection->prepare($sql);

@@ -1,7 +1,17 @@
+import { InputText, InputTextArea } from "@/components/helpers/FormInputs";
+import { queryData } from "@/components/helpers/queryData";
+import ButtonSpinner from "@/components/partials/spinners/ButtonSpinner";
+import {
+  setIsAdd,
+  setMessage,
+  setSuccess,
+} from "@/components/store/StoreAction";
+import { StoreContext } from "@/components/store/StoreContext";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Formik } from "formik";
+import { Formik, Form } from "formik";
 import React from "react";
 import { IoMdClose } from "react-icons/io";
+import * as Yup from "yup";
 
 const ModalEditBannerContent = ({ close, theContent }) => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -11,15 +21,20 @@ const ModalEditBannerContent = ({ close, theContent }) => {
 
   const mutation = useMutation({
     mutationFn: (values) =>
-      queryData(itemEdit`/v2/header-content`, "put", values),
+      queryData(
+        `/v2/header-content/${theContent?.data[0].header_id}`,
+        "put",
+        values
+      ),
     onSuccess: (data) => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["parents"] });
+      queryClient.invalidateQueries({ queryKey: ["headerContent"] });
       // show error box
       if (data.success) {
         dispatch(setIsAdd(false));
         dispatch(setSuccess(true));
-        dispatch(setMessage("Record successfully added."));
+        close(false);
+        dispatch(setMessage("Content Updated."));
       }
       if (!data.success) {
         dispatch(setValidate(true));
@@ -29,16 +44,17 @@ const ModalEditBannerContent = ({ close, theContent }) => {
   });
 
   const initVal = {
-    header_banner_title: itemEdit ? itemEdit.header_banner_title : "",
-    parents_lname: itemEdit ? itemEdit.parents_lname : "",
-    parents_email: itemEdit ? itemEdit.parents_email : "",
-    parents_email_old: itemEdit ? itemEdit.parents_email : "",
+    header_banner_title: theContent?.data[0].header_banner_title,
+    header_banner_text: theContent?.data[0].header_banner_text,
+    header_banner_btn_text: theContent?.data[0].header_banner_btn_text,
+    header_banner_btn_link: theContent?.data[0].header_banner_btn_link,
   };
 
   const yupSchema = Yup.object({
-    parents_fname: Yup.string().required("Required"),
-    parents_lname: Yup.string().required("Required"),
-    parents_email: Yup.string().required("Required").email("Invalid email"),
+    header_banner_title: Yup.string().required("Required"),
+    header_banner_text: Yup.string().required("Required"),
+    header_banner_btn_text: Yup.string().required("Required"),
+    header_banner_btn_link: Yup.string().required("Required"),
   });
 
   return (
@@ -65,39 +81,45 @@ const ModalEditBannerContent = ({ close, theContent }) => {
                 <Form>
                   <div className="">
                     <div>
-                      <div className="inputGroup mb-4">
-                        <label htmlFor="">Banner Title</label> <br />
-                        <input
+                      <div className="inputGroup flex flex-col mb-4">
+                        <InputText
+                          label="Banner Title"
                           type="text"
-                          className="border-customGray border w-full h-[36px]"
+                          name="header_banner_title"
+                          disabled={mutation.isPending}
                         />
                       </div>
-                      <div className="inputGroup mb-4">
-                        <label htmlFor="">Banner Desc</label> <br />
-                        <textarea
-                          name=""
-                          id=""
-                          className="border-customGray border w-full h-[150px]"
-                        ></textarea>
-                      </div>
-                      <div className="inputGroup mb-4">
-                        <label htmlFor="">Button Text</label> <br />
-                        <input
-                          type="text"
-                          className="border-customGray border w-full h-[36px]"
+                      <div className="inputGroup flex flex-col mb-4">
+                        <InputTextArea
+                          label="Banner Text"
+                          name="header_banner_text"
+                          disabled={mutation.isPending}
                         />
                       </div>
-                      <div className="inputGroup">
-                        <label htmlFor="">Button Link</label> <br />
-                        <input
+                      <div className="inputGroup flex flex-col mb-4">
+                        <InputText
+                          label="Button Text"
                           type="text"
-                          className="border-customGray border w-full h-[36px]"
+                          name="header_banner_btn_text"
+                          disabled={mutation.isPending}
+                        />
+                      </div>
+                      <div className="inputGroup flex flex-col">
+                        <InputText
+                          label="Button Link"
+                          type="text"
+                          name="header_banner_btn_link"
+                          disabled={mutation.isPending}
                         />
                       </div>
                     </div>
                     <div className="btnUpdate absolute bottom-0 py-4 flex gap-2">
-                      <button type="submit" value="" className="btn">
-                        Update
+                      <button
+                        type="submit"
+                        className="btn"
+                        disabled={mutation.isPending || !props.dirty}
+                      >
+                        {mutation.isPending ? <ButtonSpinner /> : "Update"}
                       </button>
                       <button
                         type="reset"

@@ -4,12 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 html {
   font-size: 14px;
   scroll-behavior: smooth;
@@ -23,10 +17,13 @@ html {
     @apply outline-none;
   }
   input[type="text"] {
-    @apply p-1  text-sm;
+    @apply p-1 text-[#5b5b5b] text-sm border-customGray border w-full h-[36px] mb-1;
   }
   textarea:focus {
     @apply outline-none p-1 text-sm;
+  }
+  textarea {
+    @apply p-1 text-[#5b5b5b]  text-sm border-customGray border w-full min-h-[150px] mb-1 scrollbar resize-none;
   }
 }
 
@@ -35,7 +32,11 @@ html {
     @apply max-w-[1170px] mx-auto;
   }
   .btn {
-    @apply inline-block rounded-full py-[13px] px-[25px] bg-primary text-light outline-1 border-primary border outline-light hover:bg-customGray transition-all hover:text-dark hover:border-dark hover:border;
+    @apply inline-block rounded-full py-[13px] px-[25px] bg-primary text-light outline-1 border-primary border outline-light hover:bg-secondary transition-all  hover:border-dark hover:border;
+  }
+
+  .btn:disabled {
+    @apply bg-customGray border-customGray hover:text-light;
   }
 
   .btn-light {
@@ -50,6 +51,31 @@ html {
   }
   .btnImgUpload button {
     @apply text-2xl text-light bg-dark bg-opacity-50 transition-all opacity-0 group-hover:opacity-100 w-full grid place-items-center h-full absolute top-0 left-0;
+  }
+  span.error-show {
+    @apply text-[red] bg-[#f7aa79] p-1 italic bg-opacity-5 text-sm;
+  }
+}
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #f7f4ed;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #e0cbcb;
+    border-radius: 100vh;
+    border: 3px solid #f6f7ed;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #c0a0b9;
   }
 }
 

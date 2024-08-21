@@ -12,6 +12,7 @@ export default {
       customGray: "#f2f2f2",
       light: "#ffffff",
       dark: "#2b2b2b",
+      alert: "#af1818",
     },
     extend: {
       fontFamily: {

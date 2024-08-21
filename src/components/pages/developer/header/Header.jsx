@@ -3,17 +3,30 @@ import { devBaseImgUrl } from "@/components/helpers/functions-general";
 import HeaderContent from "./HeaderContent";
 import DashBoardNav from "@/components/partials/DashBoardNav";
 import HeaderLoader from "./HeaderLoader";
+import { StoreContext } from "@/components/store/StoreContext";
+import useQueryData from "@/components/custom-hooks/useQueryData";
+import Toast from "@/components/partials/Toast";
 
 const Header = () => {
   const [loading, setLoading] = React.useState(true);
   const { store, dispatch } = React.useContext(StoreContext);
   const [itemEdit, setItemEdit] = React.useState(null);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 1000);
+  // }, []);
+
+  const {
+    isLoading,
+    error,
+    data: headerContent,
+  } = useQueryData(
+    "/v2/header-content", // endpoint
+    "get", // method
+    "headerContent" // key
+  );
 
   return (
     <>
@@ -37,11 +50,12 @@ const Header = () => {
           </div>
           <div className="thePage p-8 pt-[100px]">
             <h2 className="mb-14 text-2xl font-semibold">Edit Header</h2>
-            <HeaderContent />
+            <HeaderContent headerContent={headerContent} />
             <HeaderLoader />
           </div>
         </div>
       </div>
+      {store.success && <Toast />}
     </>
   );
 };

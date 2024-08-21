@@ -12,8 +12,8 @@ if (array_key_exists("headerid", $_GET)) {
     $HeaderContent->header_banner_btn_text = checkIndex($data, "header_banner_btn_text");
     $HeaderContent->header_banner_btn_link = checkIndex($data, "header_banner_btn_link");
     checkId($HeaderContent->header_id);
-    $header_banner_title_old = checkIndex($data, "header_banner_title_old");
-    compareName($HeaderContent, $header_banner_title_old, $HeaderContent->header_banner_title);
+    // $header_banner_title_old = checkIndex($data, "header_banner_title_old");
+    // compareName($HeaderContent, $header_banner_title_old, $HeaderContent->header_banner_title);
     $query = checkUpdate($HeaderContent);
     returnSuccess($HeaderContent, "headerContent", $query);
 }

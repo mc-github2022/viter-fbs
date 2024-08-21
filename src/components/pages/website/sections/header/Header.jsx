@@ -3,13 +3,13 @@ import logo from "/logo.png";
 import bannerImg from "/fbs-banner-bg.png";
 import useQueryData from "@/components/custom-hooks/useQueryData";
 
-const { data: headerContent } = useQueryData(
-  "/v2/header-content", // endpoint
-  "get", // method
-  "headerContent" // key
-);
-
 const Header = () => {
+  const { data: headerContent } = useQueryData(
+    "/v2/header-content", // endpoint
+    "get", // method
+    "headerContent" // key
+  );
+
   return (
     <>
       <header className="py-2.5">

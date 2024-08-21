@@ -8,18 +8,12 @@ import Tooltip from "@/components/partials/Tooltip";
 import Loader from "@/components/partials/loader/Loader";
 import HeaderLoader from "./HeaderLoader";
 
-const HeaderContent = () => {
+const HeaderContent = ({ headerContent }) => {
   const [content, setContent] = React.useState(false);
   const handleOpen = () => setContent(true);
 
   const [menu, setMenu] = React.useState(false);
   const handleModalMenu = () => setMenu(true);
-
-  const { data: headerContent } = useQueryData(
-    "/v2/header-content", // endpoint
-    "get", // method
-    "headerContent" // key
-  );
 
   return (
     <>
@@ -60,7 +54,6 @@ const HeaderContent = () => {
           </div>
         </div>
       </header>
-
       <section className="heroBanner py-20 bg-customGray">
         <div className="container lg:myContainer">
           <div className="wrapper grid md:grid-cols-2 gap-4 place-items-center  px-4">
@@ -70,20 +63,16 @@ const HeaderContent = () => {
                 <Tooltip text="Edit" />
               </div>
               <h2 className="bannerTitle text-3xl mb-8 text-dark">
-                Excellence in <b>Managed Services</b> and <b>Web Solutions</b>
+                <b>{headerContent?.data[0].header_banner_title}</b>
               </h2>
               <p className="bannerDesc mb-8">
-                Along with our website design & development solutions (Including
-                website hosting, graphic design, and basic SEO services), FBS
-                meets the needs of clients through recruiting and managing
-                professionals who serve in a wide array of areas like
-                bookkeeping and accounting, virtual assistant and data entry
-                personnel. If you want excellent customer service and a
-                dedicated professional working at a competitive price, we can
-                meet your needs.
+                {headerContent?.data[0].header_banner_text}
               </p>
-              <a href="#" className="btn">
-                Our Services
+              <a
+                href={headerContent?.data[0].header_banner_btn_link}
+                className="btn"
+              >
+                {headerContent?.data[0].header_banner_btn_text}
               </a>
             </div>
             <div className="grid place-items-center relative group">
@@ -98,9 +87,11 @@ const HeaderContent = () => {
         </div>
       </section>
 
-      {content && <ModalEditBannerContent close={setContent} />}
+      {content && (
+        <ModalEditBannerContent close={setContent} theContent={headerContent} />
+      )}
       {menu && (
-        <ModalEditHeaderContent close={setMenu} theContent={headerContent} />
+        <ModalEditHeaderContent close={setMenu} headerContent={headerContent} />
       )}
     </>
   );

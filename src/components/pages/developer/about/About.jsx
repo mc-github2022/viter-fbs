@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import AboutContent from "./AboutContent";
 import DashBoardNav from "@/components/partials/DashBoardNav";
 import AboutLoader from "./AboutLoader";
+import useQueryData from "@/components/custom-hooks/useQueryData";
 
 const About = () => {
   const [loading, setLoading] = React.useState(true);
@@ -12,6 +13,16 @@ const About = () => {
       setLoading(false);
     }, 1000);
   }, []);
+
+  const {
+    isLoading,
+    error,
+    data: contentAbout,
+  } = useQueryData(
+    "/v2/about-content", // endpoint
+    "get", // method
+    "aboutContent" // key
+  );
 
   return (
     <>
@@ -25,7 +36,7 @@ const About = () => {
           <DashBoardNav menu="about" />
         </div>
         <div className="main ml-[250px] w-[calc(100%_-_250px)]">
-          <div className="profileHeader p-4 border-b-2 border-customGray h-[80px] fixed w-[calc(100%_-_250px)] bg-light grid items-center z-[999]">
+          <div className="profileHeader p-4 border-b-2 border-customGray h-[80px] fixed w-[calc(100%_-_250px)] bg-light grid items-center z-[9]">
             <div className="flex justify-between items-center">
               <p className="font-semibold">CONTENT MANAGEMENT SYSTEM</p>
               <div className="profile bg-[#bf360c] h-10 w-10 rounded-full grid place-items-center">
@@ -35,7 +46,7 @@ const About = () => {
           </div>
           <div className="thePage p-8 pt-[100px]">
             <h2 className="mb-14 text-2xl font-semibold">Edit About</h2>
-            <AboutContent />
+            <AboutContent contentAbout={contentAbout} />
             <AboutLoader />
           </div>
         </div>

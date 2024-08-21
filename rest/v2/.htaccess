@@ -8,7 +8,11 @@ RewriteCond %{REQUEST_FILENAME} !-f
 Header set Access-Control-Allow-Origin *
 
 
-#DEPARTMENT
+#Header
 RewriteRule ^header-content$ controllers/developer/header/webHeader.php [L]
+RewriteRule ^header-content/([0-9]+)$ controllers/developer/header/webHeader.php?headerid=$1 [L]
 
 
+#About
+RewriteRule ^about-content$ controllers/developer/about/webAbout.php [L]
+RewriteRule ^about-content/([0-9]+)$ controllers/developer/about/webAbout.php?aboutid=$1 [L]
