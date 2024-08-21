@@ -4,9 +4,12 @@ import AboutContent from "./AboutContent";
 import DashBoardNav from "@/components/partials/DashBoardNav";
 import AboutLoader from "./AboutLoader";
 import useQueryData from "@/components/custom-hooks/useQueryData";
+import Toast from "@/components/partials/Toast";
+import { StoreContext } from "@/components/store/StoreContext";
 
 const About = () => {
   const [loading, setLoading] = React.useState(true);
+  const { store, dispatch } = React.useContext(StoreContext);
 
   useEffect(() => {
     setTimeout(() => {
@@ -51,6 +54,7 @@ const About = () => {
           </div>
         </div>
       </div>
+      {store.success && <Toast />}
     </>
   );
 };

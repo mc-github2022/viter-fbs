@@ -1,5 +1,11 @@
 import { InputText, InputTextArea } from "@/components/helpers/FormInputs";
 import { queryData } from "@/components/helpers/queryData";
+import Toast from "@/components/partials/Toast";
+import {
+  setIsAdd,
+  setMessage,
+  setSuccess,
+} from "@/components/store/StoreAction";
 import { StoreContext } from "@/components/store/StoreContext";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Formik, Form } from "formik";
@@ -25,6 +31,7 @@ const ModalEditAboutContent = ({ close, contentAbout }) => {
       queryClient.invalidateQueries({ queryKey: ["aboutContent"] });
       // show error box
       if (data.success) {
+        console.log("hahaha");
         dispatch(setIsAdd(false));
         dispatch(setSuccess(true));
         close(false);
@@ -47,6 +54,7 @@ const ModalEditAboutContent = ({ close, contentAbout }) => {
 
   const yupSchema = Yup.object({
     about_title: Yup.string().required("Required"),
+    about_subtitle: Yup.string().required("Required"),
     about_text: Yup.string().required("Required"),
     about_btn_text: Yup.string().required("Required"),
     about_btn_link: Yup.string().required("Required"),
