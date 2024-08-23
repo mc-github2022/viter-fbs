@@ -15,6 +15,8 @@ const HeaderContent = ({ headerContent }) => {
   const [menu, setMenu] = React.useState(false);
   const handleModalMenu = () => setMenu(true);
 
+  
+
   return (
     <>
       <header className="py-2.5">
