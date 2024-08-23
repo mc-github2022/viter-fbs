@@ -3,9 +3,12 @@ import ServicesContent from "./ServicesContent";
 import { devBaseImgUrl } from "@/components/helpers/functions-general";
 import DashBoardNav from "@/components/partials/DashBoardNav";
 import ServicesLoader from "./ServicesLoader";
+import { StoreContext } from "@/components/store/StoreContext";
+import Toast from "@/components/partials/Toast";
 
 const Services = () => {
   const [loading, setLoading] = React.useState(true);
+  const { store, dispatch } = React.useContext(StoreContext);
 
   useEffect(() => {
     setTimeout(() => {
@@ -40,6 +43,7 @@ const Services = () => {
           </div>
         </div>
       </div>
+      {store.success && <Toast />}
     </>
   );
 };

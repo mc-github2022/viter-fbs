@@ -16,3 +16,13 @@ RewriteRule ^header-content/([0-9]+)$ controllers/developer/header/webHeader.php
 #About
 RewriteRule ^about-content$ controllers/developer/about/webAbout.php [L]
 RewriteRule ^about-content/([0-9]+)$ controllers/developer/about/webAbout.php?aboutid=$1 [L]
+
+
+#Services
+RewriteRule ^service-content$ controllers/developer/service/webService.php [L]
+RewriteRule ^service-content/([0-9]+)$ controllers/developer/service/webService.php?serviceid=$1 [L]
+
+
+#Activity
+RewriteRule ^activity-content$ controllers/developer/activity/webActivity.php [L]
+RewriteRule ^activity-content/([0-9]+)$ controllers/developer/activity/webActivity.php?activityid=$1 [L]
