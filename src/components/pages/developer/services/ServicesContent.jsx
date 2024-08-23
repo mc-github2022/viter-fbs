@@ -20,17 +20,6 @@ const ServicesContent = () => {
 
   const [setServiceA, setServiceItemA] = React.useState(false);
 
-  const [setServiceB, setServiceItemB] = React.useState(false);
-  const handleModalServiceItemB = () => setServiceItemB(true);
-
-  const [setServiceC, setServiceItemC] = React.useState(false);
-  const handleModalServiceItemC = () => setServiceItemC(true);
-
-  const [setServiceD, setServiceItemD] = React.useState(false);
-  const handleModalServiceItemD = () => setServiceItemD(true);
-
-  const [serviceItem, setServiceItem] = React.useState(false);
-
   const [itemEdit, setItemEdit] = React.useState(null);
 
   const handleModalServiceItemA = (item) => {
@@ -64,103 +53,6 @@ const ServicesContent = () => {
             What <b>We Offer?</b>
           </h2>
           <div className="wrapper grid lg:grid-cols-4 gap-8 md:grid-cols-2">
-            {/* <div className="serviceItem font-bold relative ">
-              <div className="absolute right-[-10px] top-[-10px] z-10 group">
-                <PopupButton fn={handleModalServiceItemA} />
-                <Tooltip text="Edit" />
-              </div>
-              <div className="text-center h-[76px] mb-12">
-                <div className="relative group">
-                  <img
-                    src={`${devBaseImgUrl}/webIcon.png`}
-                    alt=""
-                    className="w-[62.5px] h-[50px] mx-auto mb-2"
-                  />
-                </div>
-                <h2 className="font-normal text-xl">We Solutions</h2>
-              </div>
-              <ul className="font-normal text-left list-[circle] [&>li]:mb-1">
-                <li>Website Design and Development</li>
-                <li>WordPress Development</li>
-                <li>Website Redesign</li>
-                <li>Web Hosting & Domain</li>
-                <li>Website Maintenance</li>
-                <li>Online Payment Integration</li>
-                <li>Web-Based Applications</li>
-              </ul>
-            </div>
-            <div className="serviceItem font-bold relative">
-              <div className="absolute right-[-10px] top-[-10px] z-10 group">
-                <PopupButton fn={handleModalServiceItemB} />
-                <Tooltip text="Edit" />
-              </div>
-              <div className="text-center h-[76px] mb-12">
-                <div className="relative group">
-                  <img
-                    src={`${devBaseImgUrl}/vaIcon.png`}
-                    alt=""
-                    className="w-[50px] h-[50px] mx-auto mb-2"
-                  />
-                </div>
-                <h2 className="font-normal text-xl">
-                  Virtual Assistant <br /> Solution
-                </h2>
-              </div>
-              <ul className="font-normal text-left list-[circle] [&>li]:mb-1">
-                <li>Lead Generation</li>
-                <li>Database Management</li>
-                <li>Social Media Management</li>
-                <li>Digital Marketing</li>
-                <li>Multimedia</li>
-                <li>Transcription</li>
-                <li>Email Campaign/Newsletters</li>
-                <li>Website Management</li>
-              </ul>
-            </div>
-            <div className="serviceItem font-bold relative ">
-              <div className="absolute right-[-10px] top-[-10px] z-10 group">
-                <PopupButton fn={handleModalServiceItemC} />
-                <Tooltip text="Edit" />
-              </div>
-              <div className="text-center h-[76px] mb-12">
-                <div className="relative group">
-                  <img
-                    src={`${devBaseImgUrl}/accountingIcon.png`}
-                    alt=""
-                    className="w-[37.5px] h-[50px] mx-auto mb-2"
-                  />
-                </div>
-                <h2 className="font-normal text-xl">Accounting Solution</h2>
-              </div>
-              <ul className="font-normal text-left list-[circle] [&>li]:mb-1">
-                <li>Dedicated Accounting Staff</li>
-                <li>Compliance</li>
-                <li>Bookkeeping</li>
-              </ul>
-            </div>
-            <div className="serviceItem font-bold relative ">
-              <div className="absolute right-[-10px] top-[-10px] z-10 group">
-                <PopupButton fn={handleModalServiceItemD} />
-                <Tooltip text="Edit" />
-              </div>
-              <div className="text-center h-[76px] mb-12">
-                <div className="relative group">
-                  <img
-                    src={`${devBaseImgUrl}/lcssIcon.png`}
-                    alt=""
-                    className="w-[62.45px] h-[50px] mx-auto mb-2"
-                  />
-                </div>
-                <h2 className="font-normal text-xl">
-                  Learning Center <br /> Solution
-                </h2>
-              </div>
-              <ul className="font-normal text-left list-[circle] [&>li]:mb-1">
-                <li>High School Work Immersion</li>
-                <li>College On-the-Job Traning</li>
-              </ul>
-            </div> */}
-
             {serviceContent?.data.map((item, key) => {
               return (
                 <div key={key} className="serviceItem font-bold relative ">
@@ -188,6 +80,7 @@ const ServicesContent = () => {
                     <li>{item.service_includes_e}</li>
                     <li>{item.service_includes_f}</li>
                     <li>{item.service_includes_g}</li>
+                    <li>{item.service_includes_h}</li>
                   </ul>
                 </div>
               );
@@ -200,9 +93,6 @@ const ServicesContent = () => {
       {setServiceA && (
         <ModalEditServicesItemA close={setServiceItemA} itemEdit={itemEdit} />
       )}
-      {setServiceB && <ModalEditServicesItemB close={setServiceItemB} />}
-      {setServiceC && <ModalEditServicesItemC close={setServiceItemC} />}
-      {setServiceD && <ModalEditServicesItemD close={setServiceItemD} />}
     </>
   );
 };

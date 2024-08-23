@@ -1,6 +1,7 @@
 import useQueryData from "@/components/custom-hooks/useQueryData";
 import { InputText } from "@/components/helpers/FormInputs";
 import { devBaseImgUrl } from "@/components/helpers/functions-general";
+import { queryData } from "@/components/helpers/queryData";
 import ButtonSpinner from "@/components/partials/spinners/ButtonSpinner copy";
 import {
   setIsAdd,
@@ -9,7 +10,7 @@ import {
   setValidate,
 } from "@/components/store/StoreAction";
 import { StoreContext } from "@/components/store/StoreContext";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Formik, Form } from "formik";
 import React from "react";
 import { IoMdClose } from "react-icons/io";
@@ -18,7 +19,11 @@ import * as Yup from "yup";
 
 const ModalEditServicesItemA = ({ close, itemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);
+  const queryClient = useQueryClient();
+
   const handleClose = () => close(false);
+
+  console.log(itemEdit.service_id);
 
   const mutation = useMutation({
     mutationFn: (values) =>
@@ -26,6 +31,7 @@ const ModalEditServicesItemA = ({ close, itemEdit }) => {
     onSuccess: (data) => {
       // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: ["serviceContent"] });
+
       // show error box
       if (data.success) {
         dispatch(setIsAdd(false));
@@ -40,8 +46,10 @@ const ModalEditServicesItemA = ({ close, itemEdit }) => {
     },
   });
 
+  console.log(itemEdit);
+
   const initVal = {
-    service_title: itemEdit.service_title,
+    service_title: itemEdit ? itemEdit.service_title : "",
     service_includes_a: itemEdit ? itemEdit.service_includes_a : "",
     service_includes_b: itemEdit ? itemEdit.service_includes_b : "",
     service_includes_c: itemEdit ? itemEdit.service_includes_c : "",
@@ -53,7 +61,7 @@ const ModalEditServicesItemA = ({ close, itemEdit }) => {
   };
 
   const yupSchema = Yup.object({
-    header_banner_title: Yup.string().required("Required"),
+    service_title: Yup.string().required("Required"),
   });
 
   return (
@@ -67,6 +75,7 @@ const ModalEditServicesItemA = ({ close, itemEdit }) => {
           >
             <IoMdClose />
           </button>
+
           <Formik
             initialValues={initVal}
             validationSchema={yupSchema}
@@ -112,36 +121,50 @@ const ModalEditServicesItemA = ({ close, itemEdit }) => {
                           name="service_includes_a"
                           disabled={mutation.isPending}
                         />
+                      </div>
+                      <div className="inputGroup ">
                         <InputText
                           type="text"
                           name="service_includes_b"
                           disabled={mutation.isPending}
                         />
+                      </div>
+                      <div className="inputGroup ">
                         <InputText
                           type="text"
                           name="service_includes_c"
                           disabled={mutation.isPending}
                         />
+                      </div>
+                      <div className="inputGroup ">
                         <InputText
                           type="text"
                           name="service_includes_d"
                           disabled={mutation.isPending}
                         />
+                      </div>
+                      <div className="inputGroup ">
                         <InputText
                           type="text"
                           name="service_includes_e"
                           disabled={mutation.isPending}
                         />
+                      </div>
+                      <div className="inputGroup ">
                         <InputText
                           type="text"
                           name="service_includes_f"
                           disabled={mutation.isPending}
                         />
+                      </div>
+                      <div className="inputGroup ">
                         <InputText
                           type="text"
                           name="service_includes_g"
                           disabled={mutation.isPending}
                         />
+                      </div>
+                      <div className="inputGroup ">
                         <InputText
                           type="text"
                           name="service_includes_h"
