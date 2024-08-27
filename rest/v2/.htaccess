@@ -26,3 +26,8 @@ RewriteRule ^service-content/([0-9]+)$ controllers/developer/service/webService.
 #Services
 RewriteRule ^activity-content$ controllers/developer/activity/webActivity.php [L]
 RewriteRule ^activity-content/([0-9]+)$ controllers/developer/activity/webActivity.php?activityid=$1 [L]
+
+
+#Footer
+RewriteRule ^contact-content$ controllers/developer/footer/webFooter.php [L]
+RewriteRule ^contact-content/([0-9]+)$ controllers/developer/footer/webFooter.php?contactid=$1 [L]

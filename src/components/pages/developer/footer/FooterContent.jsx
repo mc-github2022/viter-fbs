@@ -16,16 +16,39 @@ import ModalEditFooterSocial from "./ModalEditFooterSocial";
 import ModalEditFooterContact from "./ModalEditFooterContact";
 import Tooltip from "@/components/partials/Tooltip";
 import FooterLoader from "./FooterLoader";
+import useQueryData from "@/components/custom-hooks/useQueryData";
 
 const FooterContent = () => {
   const [footerSocial, setfooterSocial] = React.useState(false);
-  const handleModalFooterSocial = () => setfooterSocial(true);
+
+  const [isUpdateFooter, setUpdateFooter] = React.useState("");
+
+  const handleModalFooterSocial = () => {
+    setfooterSocial(true);
+    setUpdateFooter("updateCopy");
+  };
 
   const [footerContact, setfooterContact] = React.useState(false);
   const handleModalFooterContact = () => setfooterContact(true);
 
   const [footerService, setfooterService] = React.useState(false);
   const handleModalFooterService = () => setfooterService(true);
+
+  const {
+    isLoading,
+    error,
+    data: serviceContent,
+  } = useQueryData(
+    "/v2/service-content", // endpoint
+    "get", // method
+    "serviceContent" // key
+  );
+
+  const { data: footerContent } = useQueryData(
+    "/v2/contact-content", // endpoint
+    "get", // method
+    "contactContent" // key
+  );
 
   return (
     <>
@@ -44,61 +67,81 @@ const FooterContent = () => {
               <p className="text-xs text-center mb-8">Copyright © 2024</p>
               <div className="grid place-items-center mb-4">
                 <ul className="flex gap-2 text-2xl">
-                  <li>
-                    <a href="#">
-                      <FaFacebookSquare />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <FaTwitterSquare />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <FaYoutube />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <AiFillTikTok />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <FaLinkedin />
-                    </a>
-                  </li>
+                  {footerContent?.data[0].contact_fb_link ? (
+                    <li>
+                      <a href="#">
+                        <FaFacebookSquare />
+                      </a>
+                    </li>
+                  ) : (
+                    ""
+                  )}
+
+                  {footerContent?.data[0].contact_twitter_link ? (
+                    <li>
+                      <a href="#">
+                        <FaTwitterSquare />
+                      </a>
+                    </li>
+                  ) : (
+                    ""
+                  )}
+
+                  {footerContent?.data[0].contact_youtube_link ? (
+                    <li>
+                      <a href="#">
+                        <FaYoutube />
+                      </a>
+                    </li>
+                  ) : (
+                    ""
+                  )}
+
+                  {footerContent?.data[0].contact_tiktok_link ? (
+                    <li>
+                      <a href="#">
+                        <AiFillTikTok />
+                      </a>
+                    </li>
+                  ) : (
+                    ""
+                  )}
+
+                  {footerContent?.data[0].contact_linkedin_link ? (
+                    <li>
+                      <a href="#">
+                        <FaLinkedin />
+                      </a>
+                    </li>
+                  ) : (
+                    ""
+                  )}
                 </ul>
               </div>
               <div className="grid place-items-center">
                 <ul className="text-xs flex [&>li]:px-2">
                   <li>
-                    <a href="#">Privacy Policy</a>
+                    <a href={footerContent?.data[0].contact_privacy_link}>
+                      Privacy Policy
+                    </a>
                   </li>
                   <li className="border-x">
-                    <a href="#">Terms of Service</a>
+                    <a href={footerContent?.data[0].contact_terms_link}>
+                      Terms of Service
+                    </a>
                   </li>
                   <li>
-                    <a href="#">EULA</a>
+                    <a href={footerContent?.data[0].contact_eula_link}>EULA</a>
                   </li>
                 </ul>
               </div>
             </div>
             <div className="services text-center relative">
-              <div className="absolute right-[-10px] top-[-10px] z-10 group">
-                <PopupButton
-                  fn={handleModalFooterService}
-                  customCSS="!bg-customGray text-primary"
-                />
-                <Tooltip text="Edit" />
-              </div>
               <p className="font-semibold mb-4">SERVICES WE OFFER</p>
               <ul className="text-[11px] [&>li]:my-2">
-                <li>Web Solution</li>
-                <li>Virtual Assistant Solutions</li>
-                <li>Accounting Solutions</li>
-                <li className="!mb-0">Learning Center Solutions</li>
+                {serviceContent?.data.map((service, key) => {
+                  return <li key={key}>{service.service_title}</li>;
+                })}
               </ul>
             </div>
             <div className="contactDetails grid place-items-center relative">
@@ -125,11 +168,10 @@ const FooterContent = () => {
                     <IoIosMail /> <p> info@frontlinebusiness.com.ph</p>
                   </li>
                   <li className="!items-start">
-                    <FaHouseChimney />{" "}
+                    <FaHouseChimney />
                     <p>
-                      {" "}
                       Baloc road, Brgy. San Ignacio, <br />
-                      San Pablo City, Laguna, 4000{" "}
+                      San Pablo City, Laguna, 4000
                     </p>
                   </li>
                 </ul>
@@ -141,7 +183,13 @@ const FooterContent = () => {
 
       <FooterLoader />
 
-      {footerSocial && <ModalEditFooterSocial close={setfooterSocial} />}
+      {footerSocial && (
+        <ModalEditFooterSocial
+          isUpdateFooter={isUpdateFooter}
+          close={setfooterSocial}
+          footerContent={footerContent}
+        />
+      )}
       {footerContact && <ModalEditFooterContact close={setfooterContact} />}
     </>
   );
