@@ -23,6 +23,6 @@ RewriteRule ^service-content$ controllers/developer/service/webService.php [L]
 RewriteRule ^service-content/([0-9]+)$ controllers/developer/service/webService.php?serviceid=$1 [L]
 
 
-#Activity
+#Services
 RewriteRule ^activity-content$ controllers/developer/activity/webActivity.php [L]
 RewriteRule ^activity-content/([0-9]+)$ controllers/developer/activity/webActivity.php?activityid=$1 [L]

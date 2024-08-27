@@ -23,8 +23,6 @@ const ModalEditServicesItemA = ({ close, itemEdit }) => {
 
   const handleClose = () => close(false);
 
-  console.log(itemEdit.service_id);
-
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(`/v2/service-content/${itemEdit.service_id}`, "put", values),
@@ -45,8 +43,6 @@ const ModalEditServicesItemA = ({ close, itemEdit }) => {
       }
     },
   });
-
-  console.log(itemEdit);
 
   const initVal = {
     service_title: itemEdit ? itemEdit.service_title : "",

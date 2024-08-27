@@ -1,8 +1,11 @@
 import React from "react";
 import ActivitiesContent from "./ActivitiesContent";
 import DashBoardNav from "@/components/partials/DashBoardNav";
+import Toast from "@/components/partials/Toast";
+import { StoreContext } from "@/components/store/StoreContext";
 
 const Activities = () => {
+  const { store, dispatch } = React.useContext(StoreContext);
   return (
     <>
       <div className="wrapper">
@@ -29,6 +32,7 @@ const Activities = () => {
           </div>
         </div>
       </div>
+      {store.success && <Toast />}
     </>
   );
 };

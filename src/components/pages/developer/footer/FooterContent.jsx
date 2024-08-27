@@ -14,7 +14,6 @@ import { IoIosMail } from "react-icons/io";
 import { MdPhoneAndroid } from "react-icons/md";
 import ModalEditFooterSocial from "./ModalEditFooterSocial";
 import ModalEditFooterContact from "./ModalEditFooterContact";
-import ModalEditFooterService from "./ModalEditFooterService";
 import Tooltip from "@/components/partials/Tooltip";
 import FooterLoader from "./FooterLoader";
 
@@ -144,7 +143,6 @@ const FooterContent = () => {
 
       {footerSocial && <ModalEditFooterSocial close={setfooterSocial} />}
       {footerContact && <ModalEditFooterContact close={setfooterContact} />}
-      {footerService && <ModalEditFooterService close={setfooterService} />}
     </>
   );
 };

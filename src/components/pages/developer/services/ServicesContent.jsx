@@ -1,14 +1,11 @@
 import { devBaseImgUrl } from "@/components/helpers/functions-general";
 import PopupButton from "@/components/partials/popup/PopupButton";
 import React from "react";
-import { MdOutlineFileUpload } from "react-icons/md";
+
 import ModalEditServicesContent from "./ModalEditServicesContent";
 import ModalEditServicesItemA from "./ModalEditServicesItemA";
-import ModalEditServicesItemB from "./ModalEditServicesItemB";
-import ModalEditServicesItemC from "./ModalEditServicesItemC";
-import ModalEditServicesItemD from "./ModalEditServicesItemD";
 import Tooltip from "@/components/partials/Tooltip";
-import ServicesLoader from "./ServicesLoader";
+
 import useQueryData from "@/components/custom-hooks/useQueryData";
 import { StoreContext } from "@/components/store/StoreContext";
 import { setIsConfirm } from "@/components/store/StoreAction";
