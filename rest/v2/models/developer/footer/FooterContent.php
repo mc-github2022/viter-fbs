@@ -40,7 +40,7 @@ class FooterContent
         return $query;
     }
 
-    public function update()
+    public function updateContact()
     {
         try {
             $sql = "update {$this->tblContact} set ";
@@ -48,7 +48,27 @@ class FooterContent
             $sql .= "contact_phone_number = :contact_phone_number, ";
             $sql .= "contact_office_hours = :contact_office_hours, ";
             $sql .= "contact_email = :contact_email, ";
-            $sql .= "contact_address = :contact_address, ";
+            $sql .= "contact_address = :contact_address ";
+            $sql .= "where contact_id = :contact_id ";
+            $query = $this->connection->prepare($sql);
+            $query->execute([
+                "contact_tel_number" => $this->contact_tel_number,
+                "contact_phone_number" => $this->contact_phone_number,
+                "contact_office_hours" => $this->contact_office_hours,
+                "contact_email" => $this->contact_email,
+                "contact_address" => $this->contact_address,
+                "contact_id" => $this->contact_id,
+            ]);
+        } catch (PDOException $ex) {
+            $query = false;
+        }
+        return $query;
+    }
+
+    public function updateCopyright()
+    {
+        try {
+            $sql = "update {$this->tblContact} set ";
             $sql .= "contact_fb_link = :contact_fb_link, ";
             $sql .= "contact_twitter_link = :contact_twitter_link, ";
             $sql .= "contact_youtube_link = :contact_youtube_link, ";
@@ -60,11 +80,6 @@ class FooterContent
             $sql .= "where contact_id = :contact_id ";
             $query = $this->connection->prepare($sql);
             $query->execute([
-                "contact_tel_number" => $this->contact_tel_number,
-                "contact_phone_number" => $this->contact_phone_number,
-                "contact_office_hours" => $this->contact_office_hours,
-                "contact_email" => $this->contact_email,
-                "contact_address" => $this->contact_address,
                 "contact_fb_link" => $this->contact_fb_link,
                 "contact_twitter_link" => $this->contact_twitter_link,
                 "contact_youtube_link" => $this->contact_youtube_link,
@@ -73,6 +88,21 @@ class FooterContent
                 "contact_privacy_link" => $this->contact_privacy_link,
                 "contact_terms_link" => $this->contact_terms_link,
                 "contact_eula_link" => $this->contact_eula_link,
+                "contact_id" => $this->contact_id,
+            ]);
+        } catch (PDOException $ex) {
+            $query = false;
+        }
+        return $query;
+    }
+
+    public function readById()
+    {
+        try {
+            $sql = "select * from {$this->tblContact} ";
+            $sql .= "where contact_id = :contact_id ";
+            $query = $this->connection->prepare($sql);
+            $query->execute([
                 "contact_id" => $this->contact_id,
             ]);
         } catch (PDOException $ex) {

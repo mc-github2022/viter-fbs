@@ -29,11 +29,10 @@ const FooterContent = () => {
   };
 
   const [footerContact, setfooterContact] = React.useState(false);
-  const handleModalFooterContact = () => setfooterContact(true);
-
-  const [footerService, setfooterService] = React.useState(false);
-  const handleModalFooterService = () => setfooterService(true);
-
+  const handleModalFooterContact = () => {
+    setfooterContact(true);
+    setUpdateFooter("updateContact");
+  };
   const {
     isLoading,
     error,
@@ -47,7 +46,7 @@ const FooterContent = () => {
   const { data: footerContent } = useQueryData(
     "/v2/contact-content", // endpoint
     "get", // method
-    "contactContent" // key
+    "footerContent" // key
   );
 
   return (
@@ -155,25 +154,46 @@ const FooterContent = () => {
               <div>
                 <p className="font-semibold mb-4">CONTACT DETAILS</p>
                 <ul className="[&>li>p]:text-[11px] [&>li]:flex [&>li]:gap-2 [&>li]:items-center [&>li]:mb-2 ">
-                  <li>
-                    <BsFillTelephoneFill /> <p> 049 501 3592</p>
-                  </li>
-                  <li>
-                    <MdPhoneAndroid /> <p> 0927 168 6810 </p>
-                  </li>
-                  <li>
-                    <FaClock /> <p> Monday - Friday | 7:00am - 4:30pm</p>
-                  </li>
-                  <li>
-                    <IoIosMail /> <p> info@frontlinebusiness.com.ph</p>
-                  </li>
-                  <li className="!items-start">
-                    <FaHouseChimney />
-                    <p>
-                      Baloc road, Brgy. San Ignacio, <br />
-                      San Pablo City, Laguna, 4000
-                    </p>
-                  </li>
+                  {footerContent?.data[0].contact_tel_number ? (
+                    <li>
+                      <BsFillTelephoneFill />
+                      <p> {footerContent?.data[0].contact_tel_number}</p>
+                    </li>
+                  ) : (
+                    ""
+                  )}
+                  {footerContent?.data[0].contact_phone_number ? (
+                    <li>
+                      <MdPhoneAndroid />
+                      <p> {footerContent?.data[0].contact_phone_number}</p>
+                    </li>
+                  ) : (
+                    ""
+                  )}
+                  {footerContent?.data[0].contact_office_hours ? (
+                    <li>
+                      <FaClock />
+                      <p> {footerContent?.data[0].contact_office_hours}</p>
+                    </li>
+                  ) : (
+                    ""
+                  )}
+                  {footerContent?.data[0].contact_email ? (
+                    <li>
+                      <IoIosMail />
+                      <p> {footerContent?.data[0].contact_email}</p>
+                    </li>
+                  ) : (
+                    ""
+                  )}
+                  {footerContent?.data[0].contact_address ? (
+                    <li>
+                      <FaHouseChimney />
+                      <p> {footerContent?.data[0].contact_address}</p>
+                    </li>
+                  ) : (
+                    ""
+                  )}
                 </ul>
               </div>
             </div>
@@ -190,7 +210,13 @@ const FooterContent = () => {
           footerContent={footerContent}
         />
       )}
-      {footerContact && <ModalEditFooterContact close={setfooterContact} />}
+      {footerContact && (
+        <ModalEditFooterContact
+          isUpdateFooter={isUpdateFooter}
+          close={setfooterContact}
+          footerContent={footerContent}
+        />
+      )}
     </>
   );
 };

@@ -2,8 +2,11 @@ import { devBaseImgUrl } from "@/components/helpers/functions-general";
 import React from "react";
 import FooterContent from "./FooterContent";
 import DashBoardNav from "@/components/partials/DashBoardNav";
+import Toast from "@/components/partials/Toast";
+import { StoreContext } from "@/components/store/StoreContext";
 
 const Footer = () => {
+  const { store, dispatch } = React.useContext(StoreContext);
   return (
     <>
       <div className="wrapper">
@@ -30,6 +33,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      {store.success && <Toast />}
     </>
   );
 };

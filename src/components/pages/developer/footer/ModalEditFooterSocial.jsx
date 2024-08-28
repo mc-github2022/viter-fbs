@@ -1,4 +1,5 @@
 import { InputText } from "@/components/helpers/FormInputs";
+import { queryData } from "@/components/helpers/queryData";
 import {
   setIsAdd,
   setMessage,
@@ -28,7 +29,6 @@ const ModalEditFooterSocial = ({ isUpdateFooter, close, footerContent }) => {
       queryClient.invalidateQueries({ queryKey: ["footerContent"] });
       // show error box
       if (data.success) {
-        console.log("hahaha");
         dispatch(setIsAdd(false));
         dispatch(setSuccess(true));
         close(false);
@@ -40,6 +40,8 @@ const ModalEditFooterSocial = ({ isUpdateFooter, close, footerContent }) => {
       }
     },
   });
+
+  console.log(footerContent);
 
   const initVal = {
     isUpdate: isUpdateFooter,
@@ -54,7 +56,7 @@ const ModalEditFooterSocial = ({ isUpdateFooter, close, footerContent }) => {
   };
 
   const yupSchema = Yup.object({
-    contact_fb_link: Yup.string().required("Required"),
+    // contact_fb_link: Yup.string().required("Required"),
   });
 
   const handleClose = () => close(false);
@@ -123,7 +125,7 @@ const ModalEditFooterSocial = ({ isUpdateFooter, close, footerContent }) => {
                       </div>
                       <div className="inputGroup mb-4">
                         <InputText
-                          label="Youtube Link"
+                          label="Privacy Link"
                           type="text"
                           name="contact_privacy_link"
                           disabled={mutation.isPending}
@@ -131,7 +133,7 @@ const ModalEditFooterSocial = ({ isUpdateFooter, close, footerContent }) => {
                       </div>
                       <div className="inputGroup mb-4">
                         <InputText
-                          label="Terms"
+                          label="Terms Link"
                           type="text"
                           name="contact_terms_link"
                           disabled={mutation.isPending}
@@ -139,9 +141,9 @@ const ModalEditFooterSocial = ({ isUpdateFooter, close, footerContent }) => {
                       </div>
                       <div className="inputGroup mb-4">
                         <InputText
-                          label="Terms"
+                          label="Eula Link"
                           type="text"
-                          name="contact_terms_link"
+                          name="contact_eula_link"
                           disabled={mutation.isPending}
                         />
                       </div>
