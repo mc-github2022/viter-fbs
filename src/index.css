@@ -55,6 +55,18 @@ html {
   span.error-show {
     @apply text-[red] bg-[#f7aa79] p-1 italic bg-opacity-5 text-sm;
   }
+  .toggle_menu span {
+    @apply w-10 h-2 bg-primary block rounded-full;
+  }
+  .headerNav ul {
+    @apply absolute left-0 bg-light block w-full text-center md:flex md:static md:bg-[transparent] h-0 md:h-[50px]  top-[70px] overflow-hidden transition-all;
+  }
+  .headerNav ul.open {
+    @apply h-[250px] md:h-[50px] transition-all;
+  }
+  .headerNav ul li {
+    @apply py-4 border-t md:border-none  border-y-customGray;
+  }
 }
 
 @layer utilities {

@@ -42,8 +42,6 @@ const ModalEditActivitiesItemA = ({ close, itemEdit }) => {
     },
   });
 
-  console.log(itemEdit);
-
   const initVal = {
     activity_title: itemEdit ? itemEdit.activity_title : "",
     activity_text: itemEdit ? itemEdit.activity_text : "",
@@ -100,6 +98,7 @@ const ModalEditActivitiesItemA = ({ close, itemEdit }) => {
                           </div>
                         </div>
                       </div>
+
                       <div className="inputGroup mb-4">
                         <InputText
                           label="Activity Title"

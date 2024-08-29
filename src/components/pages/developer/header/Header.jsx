@@ -10,8 +10,6 @@ import Toast from "@/components/partials/Toast";
 const Header = () => {
   const [loading, setLoading] = React.useState(true);
   const { store, dispatch } = React.useContext(StoreContext);
-  
-
 
   // useEffect(() => {
   //   setTimeout(() => {
@@ -51,8 +49,11 @@ const Header = () => {
           </div>
           <div className="thePage p-8 pt-[100px]">
             <h2 className="mb-14 text-2xl font-semibold">Edit Header</h2>
-            <HeaderContent headerContent={headerContent} />
-            <HeaderLoader />
+            {isLoading ? (
+              <HeaderLoader />
+            ) : (
+              <HeaderContent headerContent={headerContent} />
+            )}
           </div>
         </div>
       </div>

@@ -201,8 +201,6 @@ const FooterContent = () => {
         </div>
       </footer>
 
-      <FooterLoader />
-
       {footerSocial && (
         <ModalEditFooterSocial
           isUpdateFooter={isUpdateFooter}

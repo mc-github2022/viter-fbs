@@ -5,6 +5,7 @@ import DashBoardNav from "@/components/partials/DashBoardNav";
 import ServicesLoader from "./ServicesLoader";
 import { StoreContext } from "@/components/store/StoreContext";
 import Toast from "@/components/partials/Toast";
+import useQueryData from "@/components/custom-hooks/useQueryData";
 
 const Services = () => {
   const [loading, setLoading] = React.useState(true);
@@ -15,6 +16,16 @@ const Services = () => {
       setLoading(false);
     }, 1000);
   }, []);
+
+  const {
+    isLoading,
+    error,
+    data: serviceContent,
+  } = useQueryData(
+    "/v2/service-content", // endpoint
+    "get", // method
+    "serviceContent" // key
+  );
 
   return (
     <>
@@ -38,8 +49,7 @@ const Services = () => {
           </div>
           <div className="thePage p-8 pt-[100px]">
             <h2 className="mb-14 text-2xl font-semibold">Edit Services</h2>
-            <ServicesContent />
-            <ServicesLoader />
+            {isLoading ? <ServicesLoader /> : <ServicesContent />}
           </div>
         </div>
       </div>

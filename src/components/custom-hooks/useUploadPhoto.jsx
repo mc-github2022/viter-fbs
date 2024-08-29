@@ -1,5 +1,5 @@
 import React from "react";
-import { setError, setMessage } from "../../store/StoreAction";
+import { setError, setMessage } from "../store/StoreAction";
 import {
   consoleLog,
   devApiUrl,

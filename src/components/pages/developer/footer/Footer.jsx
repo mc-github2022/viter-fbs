@@ -4,9 +4,20 @@ import FooterContent from "./FooterContent";
 import DashBoardNav from "@/components/partials/DashBoardNav";
 import Toast from "@/components/partials/Toast";
 import { StoreContext } from "@/components/store/StoreContext";
+import FooterLoader from "./FooterLoader";
+import useQueryData from "@/components/custom-hooks/useQueryData";
 
 const Footer = () => {
   const { store, dispatch } = React.useContext(StoreContext);
+  const {
+    isLoading,
+    error,
+    data: serviceContent,
+  } = useQueryData(
+    "/v2/service-content", // endpoint
+    "get", // method
+    "serviceContent" // key
+  );
   return (
     <>
       <div className="wrapper">
@@ -29,7 +40,7 @@ const Footer = () => {
           </div>
           <div className="thePage p-8 pt-[100px]">
             <h2 className="mb-14 text-2xl font-semibold">Edit Footer</h2>
-            <FooterContent />
+            {isLoading ? <FooterLoader /> : <FooterContent />}
           </div>
         </div>
       </div>

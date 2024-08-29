@@ -11,12 +11,6 @@ const About = () => {
   const [loading, setLoading] = React.useState(true);
   const { store, dispatch } = React.useContext(StoreContext);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, []);
-
   const {
     isLoading,
     error,
@@ -49,8 +43,11 @@ const About = () => {
           </div>
           <div className="thePage p-8 pt-[100px]">
             <h2 className="mb-14 text-2xl font-semibold">Edit About</h2>
-            <AboutContent contentAbout={contentAbout} />
-            <AboutLoader />
+            {isLoading ? (
+              <AboutLoader />
+            ) : (
+              <AboutContent contentAbout={contentAbout} />
+            )}
           </div>
         </div>
       </div>

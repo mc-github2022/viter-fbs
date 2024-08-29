@@ -3,9 +3,22 @@ import ActivitiesContent from "./ActivitiesContent";
 import DashBoardNav from "@/components/partials/DashBoardNav";
 import Toast from "@/components/partials/Toast";
 import { StoreContext } from "@/components/store/StoreContext";
+import ActivitiesLoader from "./ActivitiesLoader";
+import useQueryData from "@/components/custom-hooks/useQueryData";
 
 const Activities = () => {
   const { store, dispatch } = React.useContext(StoreContext);
+
+  const {
+    isLoading,
+    error,
+    data: activityContent,
+  } = useQueryData(
+    "/v2/activity-content", // endpoint
+    "get", // method
+    "activityContent" // key
+  );
+
   return (
     <>
       <div className="wrapper">
@@ -28,7 +41,7 @@ const Activities = () => {
           </div>
           <div className="thePage p-8 pt-[100px]">
             <h2 className="mb-14 text-2xl font-semibold">Edit Activities</h2>
-            <ActivitiesContent />
+            {isLoading ? <ActivitiesLoader /> : <ActivitiesContent />}
           </div>
         </div>
       </div>

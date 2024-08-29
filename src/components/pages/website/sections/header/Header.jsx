@@ -4,6 +4,11 @@ import bannerImg from "/fbs-banner-bg.png";
 import useQueryData from "@/components/custom-hooks/useQueryData";
 
 const Header = () => {
+  const [toggleMenu, setToggleMenu] = React.useState(false);
+  const handleToggleMenu = () => {
+    setToggleMenu(!toggleMenu);
+  };
+
   const { data: headerContent } = useQueryData(
     "/v2/header-content", // endpoint
     "get", // method
@@ -18,8 +23,8 @@ const Header = () => {
             <div className="theLogo ">
               <img src={logo} alt="" />
             </div>
-            <div className="headerNav">
-              <ul className="flex [&>li>a]:p-4">
+            <div className="headerNav md:block">
+              <ul className={`${toggleMenu ? "open" : ""}  flex [&>li>a]:p-4`}>
                 <li>
                   <a href="#home">HOME</a>
                 </li>
@@ -37,6 +42,14 @@ const Header = () => {
                 </li>
               </ul>
             </div>
+            <button
+              onClick={handleToggleMenu}
+              className="toggle_menu md:hidden cursor-pointer"
+            >
+              <span></span>
+              <span className="my-1"></span>
+              <span></span>
+            </button>
           </div>
         </div>
       </header>
