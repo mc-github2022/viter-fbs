@@ -1,8 +1,6 @@
 import { devBaseImgUrl } from "@/components/helpers/functions-general";
 import PopupButton from "@/components/partials/popup/PopupButton";
 import React from "react";
-
-import ModalEditServicesContent from "./ModalEditServicesContent";
 import ModalEditServicesItemA from "./ModalEditServicesItemA";
 import Tooltip from "@/components/partials/Tooltip";
 
@@ -60,9 +58,9 @@ const ServicesContent = () => {
                   <div className="text-center h-[76px] mb-12">
                     <div className="relative group">
                       <img
-                        src={`${devBaseImgUrl}/lcssIcon.png`}
+                        src={`${devBaseImgUrl}/${item.service_img}`}
                         alt=""
-                        className="w-[62.45px] h-[50px] mx-auto mb-2"
+                        className="w-[62.45px] h-[50px] mx-auto mb-2 object-contain"
                       />
                     </div>
                     <h2 className="font-normal text-xl">
@@ -86,7 +84,6 @@ const ServicesContent = () => {
         </div>
       </section>
 
-      {setService && <ModalEditServicesContent close={setServiceContent} />}
       {setServiceA && (
         <ModalEditServicesItemA close={setServiceItemA} itemEdit={itemEdit} />
       )}

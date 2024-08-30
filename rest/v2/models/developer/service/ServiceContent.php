@@ -49,7 +49,8 @@ class ServiceContent
             $sql .= "service_includes_e = :service_includes_e, ";
             $sql .= "service_includes_f = :service_includes_f, ";
             $sql .= "service_includes_g = :service_includes_g, ";
-            $sql .= "service_includes_h = :service_includes_h ";
+            $sql .= "service_includes_h = :service_includes_h, ";
+            $sql .= "service_img = :service_img ";
             $sql .= "where service_id = :service_id ";
             $query = $this->connection->prepare($sql);
             $query->execute([
@@ -62,6 +63,7 @@ class ServiceContent
                 "service_includes_f" => $this->service_includes_f,
                 "service_includes_g" => $this->service_includes_g,
                 "service_includes_h" => $this->service_includes_h,
+                "service_img" => $this->service_img,
                 "service_id" => $this->service_id,
             ]);
         } catch (PDOException $ex) {

@@ -7,6 +7,8 @@ RewriteCond %{REQUEST_FILENAME} !-f
 
 Header set Access-Control-Allow-Origin *
 
+RewriteRule ^upload-photo$ core/upload-photo.php [L]
+
 
 #Header
 RewriteRule ^header-content$ controllers/developer/header/webHeader.php [L]

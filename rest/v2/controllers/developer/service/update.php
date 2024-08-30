@@ -16,6 +16,7 @@ if (array_key_exists("serviceid", $_GET)) {
     $ServiceContent->service_includes_f = $data["service_includes_f"];
     $ServiceContent->service_includes_g = $data["service_includes_g"];
     $ServiceContent->service_includes_h = $data["service_includes_h"];
+    $ServiceContent->service_img = $data["service_img"];
     checkId($ServiceContent->service_id);
     // $header_banner_title_old = checkIndex($data, "header_banner_title_old");
     // compareName($HeaderContent, $header_banner_title_old, $HeaderContent->header_banner_title);

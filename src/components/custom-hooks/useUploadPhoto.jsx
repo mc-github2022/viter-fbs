@@ -1,10 +1,6 @@
 import React from "react";
 import { setError, setMessage } from "../store/StoreAction";
-import {
-  consoleLog,
-  devApiUrl,
-  fetchFormData,
-} from "../helpers/functions-general";
+import { devApiUrl, fetchFormData } from "../helpers/functions-general";
 
 const useUploadPhoto = (url, dispatch) => {
   const [photo, setPhoto] = React.useState(null);
@@ -16,12 +12,12 @@ const useUploadPhoto = (url, dispatch) => {
 
       const data = await fetchFormData(devApiUrl + url, fd, dispatch);
 
-      consoleLog(data);
+      // consoleLog(data);
     }
   };
 
   const handleChangePhoto = (e) => {
-    consoleLog(e.target.files[0]);
+    console.log(e.target.files[0]);
 
     if (!e.target.files[0]) {
       setPhoto("");
@@ -31,8 +27,8 @@ const useUploadPhoto = (url, dispatch) => {
     }
 
     const img = e.target.files[0];
-    consoleLog(img);
-    if (img.size > 5000) {
+    // consoleLog(img);
+    if (img.size > 50000000) {
       dispatch(setError(true));
       dispatch(
         setMessage(
@@ -41,7 +37,7 @@ const useUploadPhoto = (url, dispatch) => {
       );
     } else {
       dispatch(setError(false));
-      consoleLog("Set photo");
+      // consoleLog("Set photo");
       setPhoto(img);
     }
   };

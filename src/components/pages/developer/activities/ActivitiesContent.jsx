@@ -1,4 +1,7 @@
-import { devBaseImgUrl } from "@/components/helpers/functions-general";
+import {
+  apiVersion,
+  devBaseImgUrl,
+} from "@/components/helpers/functions-general";
 import PopupButton from "@/components/partials/popup/PopupButton";
 import React from "react";
 import ModalEditActivitiesContent from "./ModalEditActivitiesContent";
@@ -59,7 +62,7 @@ const ActivitiesContent = () => {
                   </div>
                   <div className="overflow-hidden h-[202px] mb-4">
                     <img
-                      src={`${devBaseImgUrl}/eventImageA.jpg`}
+                      src={`${devBaseImgUrl}/${item.activity_img}`}
                       alt=""
                       className=" h-full w-full hover:scale-125 transition-all object-cover"
                     />
@@ -82,8 +85,6 @@ const ActivitiesContent = () => {
           </div>
         </div>
       </section>
-
-      <ActivitiesLoader />
 
       {activitiesContent && (
         <ModalEditActivitiesContent close={setActivitiesContent} />

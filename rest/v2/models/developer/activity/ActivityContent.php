@@ -39,7 +39,8 @@ class ActivityContent
             $sql .= "activity_title = :activity_title, ";
             $sql .= "activity_text = :activity_text, ";
             $sql .= "activity_btn_text = :activity_btn_text, ";
-            $sql .= "activity_btn_link = :activity_btn_link ";
+            $sql .= "activity_btn_link = :activity_btn_link, ";
+            $sql .= "activity_img = :activity_img ";
             $sql .= "where activity_id = :activity_id ";
             $query = $this->connection->prepare($sql);
             $query->execute([
@@ -47,6 +48,7 @@ class ActivityContent
                 "activity_text" => $this->activity_text,
                 "activity_btn_text" => $this->activity_btn_text,
                 "activity_btn_link" => $this->activity_btn_link, 
+                "activity_img" => $this->activity_img, 
                 "activity_id" => $this->activity_id,
             ]);
         } catch (PDOException $ex) {
