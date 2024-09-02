@@ -2,20 +2,25 @@ import { devBaseImgUrl } from "@/components/helpers/functions-general";
 import PopupButton from "@/components/partials/popup/PopupButton";
 import React, { useEffect } from "react";
 import ModalEditBannerContent from "./ModalEditBannerContent";
-import ModalEditHeaderContent from "./ModalEditHeaderContent";
 import { MdOutlineFileUpload } from "react-icons/md";
 import Tooltip from "@/components/partials/Tooltip";
-import Loader from "@/components/partials/loader/Loader";
-import HeaderLoader from "./HeaderLoader";
+import { IoImageOutline } from "react-icons/io5";
+import ModalEditBannerImage from "./ModalEditBannerImage";
 
 const HeaderContent = ({ headerContent }) => {
+  const [updateHeader, setUpdateHeader] = React.useState("");
+
   const [content, setContent] = React.useState(false);
-  const handleOpen = () => setContent(true);
+  const handleTextContent = () => {
+    setContent(true);
+    setUpdateHeader("textContent");
+  };
 
-  const [menu, setMenu] = React.useState(false);
-  const handleModalMenu = () => setMenu(true);
-
-  
+  const [imageContent, setImageContent] = React.useState(false);
+  const handleImageContent = () => {
+    setImageContent(true);
+    setUpdateHeader("imageContent");
+  };
 
   return (
     <>
@@ -31,10 +36,6 @@ const HeaderContent = ({ headerContent }) => {
               </div>
             </div>
             <div className="headerNav relative">
-              <div className="absolute right-0 top-[-20px] group">
-                <PopupButton fn={handleModalMenu} />
-                <Tooltip text="Edit" />
-              </div>
               <ul className="flex [&>li>a]:p-4">
                 <li>
                   <a href="#home">HOME</a>
@@ -61,7 +62,7 @@ const HeaderContent = ({ headerContent }) => {
           <div className="wrapper grid md:grid-cols-2 gap-4 place-items-center  px-4">
             <div className="bannerText relative">
               <div className="absolute right-0 group">
-                <PopupButton fn={handleOpen} />
+                <PopupButton fn={handleTextContent} />
                 <Tooltip text="Edit" />
               </div>
               <h2 className="bannerTitle text-3xl mb-8 text-dark">
@@ -77,23 +78,47 @@ const HeaderContent = ({ headerContent }) => {
                 {headerContent?.data[0].header_banner_btn_text}
               </a>
             </div>
-            <div className="grid place-items-center relative group">
-              <img src={`${devBaseImgUrl}/fbs-banner-bg.png`} alt="" />
-              <div className="btnImgUpload">
-                <button>
-                  <MdOutlineFileUpload />
-                </button>
-              </div>
+            <div className="grid place-items-center relative">
+              {headerContent?.data[0].header_banner_img === "" ? (
+                <div>
+                  <div className="w-[350px] h-[350px]  grid place-items-center bg-[#e2e2e2] rounded-md">
+                    <IoImageOutline className="text-[80px] text-light" />
+                  </div>
+                  <div className="absolute right-[-10px] top-[-10px] group">
+                    <PopupButton fn={handleImageContent} />
+                    <Tooltip text="Edit" />
+                  </div>
+                </div>
+              ) : (
+                <div>
+                  <img
+                    src={`${devBaseImgUrl}/${headerContent?.data[0].header_banner_img}`}
+                    alt=""
+                  />
+                  <div className="absolute right-[-10px] top-[-10px] group">
+                    <PopupButton fn={handleImageContent} />
+                    <Tooltip text="Edit" />
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
       </section>
 
       {content && (
-        <ModalEditBannerContent close={setContent} theContent={headerContent} />
+        <ModalEditBannerContent
+          updateHeader={updateHeader}
+          close={setContent}
+          theContent={headerContent}
+        />
       )}
-      {menu && (
-        <ModalEditHeaderContent close={setMenu} headerContent={headerContent} />
+      {imageContent && (
+        <ModalEditBannerImage
+          updateHeader={updateHeader}
+          close={setImageContent}
+          theContent={headerContent}
+        />
       )}
     </>
   );

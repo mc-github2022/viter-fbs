@@ -32,7 +32,7 @@ const Activities = () => {
                 >
                   <div className="overflow-hidden h-[202px] mb-4">
                     <img
-                      src={`${devBaseImgUrl}/eventImageA.jpg`}
+                      src={`${devBaseImgUrl}/${item.activity_img}`}
                       alt=""
                       className=" h-full w-full hover:scale-125 transition-all object-cover"
                     />

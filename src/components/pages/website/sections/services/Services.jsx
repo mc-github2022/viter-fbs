@@ -34,9 +34,9 @@ const Services = () => {
                   <div className="text-center h-[76px] mb-12">
                     <div className="relative group">
                       <img
-                        src={`${devBaseImgUrl}/lcssIcon.png`}
+                        src={`${devBaseImgUrl}/${item.service_img}`}
                         alt=""
-                        className="w-[62.45px] h-[50px] mx-auto mb-2"
+                        className="w-[62.45px] h-[50px] mx-auto mb-2 object-contain"
                       />
                     </div>
                     <h2 className="font-normal text-xl">

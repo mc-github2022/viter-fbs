@@ -2,6 +2,7 @@ import React from "react";
 import logo from "/logo.png";
 import bannerImg from "/fbs-banner-bg.png";
 import useQueryData from "@/components/custom-hooks/useQueryData";
+import { devBaseImgUrl } from "@/components/helpers/functions-general";
 
 const Header = () => {
   const [toggleMenu, setToggleMenu] = React.useState(false);
@@ -72,7 +73,10 @@ const Header = () => {
               </a>
             </div>
             <div className="grid place-items-center">
-              <img src={bannerImg} alt="" />
+              <img
+                src={`${devBaseImgUrl}/${headerContent?.data[0].header_banner_img}`}
+                alt=""
+              />
             </div>
           </div>
         </div>

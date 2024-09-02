@@ -1,16 +1,16 @@
 <?php
 
 
-function checkUpdateCopyright($object)
+function checkUpdateImage($object)
 {
-    $query = $object->updateTextContent();
+    $query = $object->updateImageContent();
     checkQuery($query, "There's a problem processing your request. (update)");
     return $query;
 }
 
-function checkUpdateContact($object)
+function checkUpdateText($object)
 {
-    $query = $object->updateImageContent();
+    $query = $object->updateTextContent();
     checkQuery($query, "There's a problem processing your request. (update)");
     return $query;
 }

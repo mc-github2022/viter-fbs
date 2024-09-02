@@ -41,7 +41,7 @@ class HeaderContent
         return $query;
     }
 
-    public function update()
+    public function updateTextContent()
     {
         try {
             $sql = "update {$this->tblHeader} set ";
@@ -56,6 +56,36 @@ class HeaderContent
                 "header_banner_text" => $this->header_banner_text,
                 "header_banner_btn_text" => $this->header_banner_btn_text,
                 "header_banner_btn_link" => $this->header_banner_btn_link,
+                "header_id" => $this->header_id,
+            ]);
+        } catch (PDOException $ex) {
+            $query = false;
+        }
+        return $query;
+    }
+    public function updateImageContent()
+    {
+        try {
+            $sql = "update {$this->tblHeader} set ";
+            $sql .= "header_banner_img = :header_banner_img ";
+            $sql .= "where header_id = :header_id ";
+            $query = $this->connection->prepare($sql);
+            $query->execute([
+                "header_banner_img" => $this->header_banner_img,
+                "header_id" => $this->header_id,
+            ]);
+        } catch (PDOException $ex) {
+            $query = false;
+        }
+        return $query;
+    }
+    public function readById()
+    {
+        try {
+            $sql = "select * from {$this->tblHeader} ";
+            $sql .= "where header_id = :header_id ";
+            $query = $this->connection->prepare($sql);
+            $query->execute([
                 "header_id" => $this->header_id,
             ]);
         } catch (PDOException $ex) {

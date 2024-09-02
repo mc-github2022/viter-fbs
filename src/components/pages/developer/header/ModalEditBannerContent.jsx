@@ -13,9 +13,11 @@ import React from "react";
 import { IoMdClose } from "react-icons/io";
 import * as Yup from "yup";
 
-const ModalEditBannerContent = ({ close, theContent }) => {
+const ModalEditBannerContent = ({ updateHeader, close, theContent }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const queryClient = useQueryClient();
+
+  console.log(updateHeader);
 
   const handleClose = () => close(false);
 
@@ -44,6 +46,7 @@ const ModalEditBannerContent = ({ close, theContent }) => {
   });
 
   const initVal = {
+    isUpdateHeader: updateHeader,
     header_banner_title: theContent?.data[0].header_banner_title,
     header_banner_text: theContent?.data[0].header_banner_text,
     header_banner_btn_text: theContent?.data[0].header_banner_btn_text,
