@@ -11,6 +11,7 @@ import ActivitiesLoader from "./ActivitiesLoader";
 import useQueryData from "@/components/custom-hooks/useQueryData";
 import { setIsConfirm } from "@/components/store/StoreAction";
 import { StoreContext } from "@/components/store/StoreContext";
+import { IoImageOutline } from "react-icons/io5";
 
 const ActivitiesContent = () => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -61,11 +62,25 @@ const ActivitiesContent = () => {
                     <Tooltip text="Edit" />
                   </div>
                   <div className="overflow-hidden h-[202px] mb-4">
-                    <img
-                      src={`${devBaseImgUrl}/${item.activity_img}`}
-                      alt=""
-                      className=" h-full w-full hover:scale-125 transition-all object-cover"
-                    />
+                    {item.activity_img === "" ? (
+                      <div>
+                        <div className="h-[198px] mx-auto grid place-items-center bg-[#e2e2e2] rounded-md">
+                          <IoImageOutline className="text-[50px] text-light" />
+                        </div>
+                        <div className="absolute right-[-10px] top-[-10px] group">
+                          <PopupButton fn={handleActivitiesItem} />
+                          <Tooltip text="Edit" />
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="relative group">
+                        <img
+                          src={`${devBaseImgUrl}/${item.activity_img}`}
+                          alt=""
+                          className="h-[198px] mb-2 object-cover w-full"
+                        />
+                      </div>
+                    )}
                   </div>
                   <div className="bg-light p-2">
                     <h2 className="font-semibold text-xl mb-4">

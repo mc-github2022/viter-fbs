@@ -29,6 +29,8 @@ const ModalEditServicesItemA = ({ close, itemEdit }) => {
 
   const handleClose = () => close(false);
 
+  console.log(itemEdit);
+
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(`/v2/service-content/${itemEdit.service_id}`, "put", values),
@@ -54,6 +56,8 @@ const ModalEditServicesItemA = ({ close, itemEdit }) => {
     `${apiVersion}/upload-photo`,
     dispatch
   );
+
+  console.log(itemEdit.service_img);
 
   const initVal = {
     service_title: itemEdit ? itemEdit.service_title : "",
@@ -90,9 +94,8 @@ const ModalEditServicesItemA = ({ close, itemEdit }) => {
             onSubmit={async (values, { setSubmitting, resetForm }) => {
               const data = {
                 ...values,
-                service_img: photo?.name || "",
+                service_img: photo?.name || itemEdit.service_img,
               };
-
               uploadPhoto();
               mutation.mutate(data);
             }}
@@ -117,8 +120,7 @@ const ModalEditServicesItemA = ({ close, itemEdit }) => {
                                 </h1>
                               </div>
                             </div>
-                          ) : (itemEdit?.service_img === "" &&
-                              photo === null) ||
+                          ) : (itemEdit.service_img === "" && photo === null) ||
                             photo === "" ? (
                             <div className="group-hover:opacity-20 mb-4 bg-customGray grid place-items-center items-center gap-2  h-[180px]  p-2">
                               <div>
@@ -130,10 +132,11 @@ const ModalEditServicesItemA = ({ close, itemEdit }) => {
                             </div>
                           ) : (
                             <img
+                              name="service_img"
                               src={
                                 photo
                                   ? URL.createObjectURL(photo) // preview
-                                  : devBaseImgUrl + "/" + itemEdit?.service_img // check db
+                                  : devBaseImgUrl + "/" + itemEdit.service_img // check db
                               }
                               alt=""
                               className="group-hover:opacity-30 duration-200 relative h-[180px]  object-contain object-[50%,50%] m-auto"
@@ -232,7 +235,7 @@ const ModalEditServicesItemA = ({ close, itemEdit }) => {
                         disabled={
                           (mutation.isPending || !props.dirty) &&
                           (photo === null || photo === "")
-                          // initVal.company_info_image === photo?.name
+                          // initVal.service_img === photo?.name
                         }
                       >
                         Update

@@ -7,6 +7,7 @@ import Tooltip from "@/components/partials/Tooltip";
 import useQueryData from "@/components/custom-hooks/useQueryData";
 import { StoreContext } from "@/components/store/StoreContext";
 import { setIsConfirm } from "@/components/store/StoreAction";
+import { IoImageOutline } from "react-icons/io5";
 
 const ServicesContent = () => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -56,13 +57,25 @@ const ServicesContent = () => {
                     <Tooltip text="Edit" />
                   </div>
                   <div className="text-center h-[76px] mb-12">
-                    <div className="relative group">
-                      <img
-                        src={`${devBaseImgUrl}/${item.service_img}`}
-                        alt=""
-                        className="w-[62.45px] h-[50px] mx-auto mb-2 object-contain"
-                      />
-                    </div>
+                    {item.service_img === "" ? (
+                      <div>
+                        <div className=" w-[60px] h-[60px] mx-auto grid place-items-center bg-[#e2e2e2] rounded-md">
+                          <IoImageOutline className="text-[50px] text-light" />
+                        </div>
+                        <div className="absolute right-[-10px] top-[-10px] group">
+                          <PopupButton fn={handleModalServiceItemA} />
+                          <Tooltip text="Edit" />
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="relative group">
+                        <img
+                          src={`${devBaseImgUrl}/${item.service_img}`}
+                          alt=""
+                          className="w-[62.45px] h-[50px] mx-auto mb-2 object-contain"
+                        />
+                      </div>
+                    )}
                     <h2 className="font-normal text-xl">
                       {item.service_title}
                     </h2>

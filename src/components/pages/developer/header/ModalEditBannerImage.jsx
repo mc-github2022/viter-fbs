@@ -28,8 +28,6 @@ const ModalEditBannerImage = ({ updateHeader, close, theContent }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const queryClient = useQueryClient();
 
-  console.log(updateHeader);
-
   const handleClose = () => close(false);
 
   const mutation = useMutation({
@@ -99,6 +97,7 @@ const ModalEditBannerImage = ({ updateHeader, close, theContent }) => {
               return (
                 <Form>
                   <div className="">
+                    <p>Banner Image</p>
                     <div className="relative group">
                       {theContent === null && photo === null ? (
                         <div className="group-hover:opacity-20 bg-customGray mb-4 items-center gap-2 h-[180px] border rounded-md p-2">
@@ -133,7 +132,6 @@ const ModalEditBannerImage = ({ updateHeader, close, theContent }) => {
                           className="group-hover:opacity-30 duration-200 relative h-[180px]  object-contain object-[50%,50%] m-auto"
                         />
                       )}
-
                       <div className="btnImgUpload">
                         <button>
                           <MdOutlineFileUpload />
