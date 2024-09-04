@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { devNavUrl } from "../helpers/functions-general";
-import { CgMenuGridO } from "react-icons/cg";
+import { CgMenuGridO, CgUser } from "react-icons/cg";
+import { FaUser } from "react-icons/fa";
+import { VscGear } from "react-icons/vsc";
 
 const DashBoardNav = ({ menu }) => {
   const links = [
@@ -55,6 +57,18 @@ const DashBoardNav = ({ menu }) => {
           <li>
             <Link target="_blank" to="/">
               Visit Website
+            </Link>
+          </li>
+        </ul>
+        <hr className="mx-2 mt-4 border-customGray" />
+        <div className="navTitle flex items-center gap-1 text-lg mb-2 mt-6">
+          <VscGear />
+          Settings
+        </div>
+        <ul className="[&>li>a]:py-2 [&>li>a]:px-2 mt-4">
+          <li>
+            <Link target="_blank" to="/">
+              Users
             </Link>
           </li>
         </ul>

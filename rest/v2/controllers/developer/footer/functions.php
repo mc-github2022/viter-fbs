@@ -3,14 +3,14 @@
 
 function checkUpdateCopyright($object)
 {
-    $query = $object->updateTextContent();
+    $query = $object->updateCopyright();
     checkQuery($query, "There's a problem processing your request. (update)");
     return $query;
 }
 
 function checkUpdateContact($object)
 {
-    $query = $object->updateImageContent();
+    $query = $object->updateContact();
     checkQuery($query, "There's a problem processing your request. (update)");
     return $query;
 }

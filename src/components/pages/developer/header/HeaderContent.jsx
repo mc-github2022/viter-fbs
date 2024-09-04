@@ -6,6 +6,7 @@ import { MdOutlineFileUpload } from "react-icons/md";
 import Tooltip from "@/components/partials/Tooltip";
 import { IoImageOutline } from "react-icons/io5";
 import ModalEditBannerImage from "./ModalEditBannerImage";
+import ModalEditHeaderLogo from "./ModalEditHeaderLogo";
 
 const HeaderContent = ({ headerContent }) => {
   const [updateHeader, setUpdateHeader] = React.useState("");
@@ -14,6 +15,12 @@ const HeaderContent = ({ headerContent }) => {
   const handleTextContent = () => {
     setContent(true);
     setUpdateHeader("textContent");
+  };
+
+  const [webLogo, setWebLogo] = React.useState(false);
+  const handleWebLogo = () => {
+    setWebLogo(true);
+    setUpdateHeader("logoContent");
   };
 
   const [imageContent, setImageContent] = React.useState(false);
@@ -27,13 +34,29 @@ const HeaderContent = ({ headerContent }) => {
       <header className="py-2.5">
         <div className="max-w-[100px] lg:myContainer">
           <div className="wrapper flex items-center justify-between">
-            <div className="theLogo  relative group">
-              <img src={`${devBaseImgUrl}/logo.png`} alt="" />
-              <div className="btnImgUpload">
-                <button>
-                  <MdOutlineFileUpload />
-                </button>
-              </div>
+            <div className="theLogo  relative">
+              {headerContent?.data[0].header_logo === "" ? (
+                <div>
+                  <div className="w-[150px] h-[80px]  grid place-items-center bg-[#e2e2e2] rounded-md">
+                    <IoImageOutline className="text-[70px] text-light" />
+                  </div>
+                  <div className="absolute right-[-10px] top-[-10px] group">
+                    <PopupButton fn={handleWebLogo} />
+                    <Tooltip text="Edit" />
+                  </div>
+                </div>
+              ) : (
+                <div>
+                  <img
+                    src={`${devBaseImgUrl}/${headerContent?.data[0].header_logo}`}
+                    alt=""
+                  />
+                  <div className="absolute right-[-10px] top-[-10px] group">
+                    <PopupButton fn={handleWebLogo} />
+                    <Tooltip text="Edit" />
+                  </div>
+                </div>
+              )}
             </div>
             <div className="headerNav relative">
               <ul className="flex [&>li>a]:p-4">
@@ -113,10 +136,19 @@ const HeaderContent = ({ headerContent }) => {
           theContent={headerContent}
         />
       )}
+
       {imageContent && (
         <ModalEditBannerImage
           updateHeader={updateHeader}
           close={setImageContent}
+          theContent={headerContent}
+        />
+      )}
+
+      {webLogo && (
+        <ModalEditHeaderLogo
+          updateHeader={updateHeader}
+          close={setWebLogo}
           theContent={headerContent}
         />
       )}

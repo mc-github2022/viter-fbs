@@ -14,9 +14,7 @@ class HeaderContent
     public $header_banner_customfield_e;
     public $header_banner_customfield_f;
     public $header_banner_customfield_g;
- 
-
-    public $header_banner_title_old;
+    public $header_logo;
 
     public $connection;
 
@@ -63,6 +61,8 @@ class HeaderContent
         }
         return $query;
     }
+
+
     public function updateImageContent()
     {
         try {
@@ -79,6 +79,26 @@ class HeaderContent
         }
         return $query;
     }
+
+    public function updateLogoContent()
+    {
+        try {
+            $sql = "update {$this->tblHeader} set ";
+            $sql .= "header_logo = :header_logo ";
+            $sql .= "where header_id = :header_id ";
+            $query = $this->connection->prepare($sql);
+            $query->execute([
+                "header_logo" => $this->header_logo,
+                "header_id" => $this->header_id,
+            ]);
+        } catch (PDOException $ex) {
+            $query = false;
+        }
+        return $query;
+    }
+
+
+
     public function readById()
     {
         try {

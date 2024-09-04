@@ -26,6 +26,13 @@ if (array_key_exists("headerid", $_GET)) {
         $query = checkUpdateImage($HeaderContent);
         returnSuccess($HeaderContent, "headerContent", $query);
     }
+    if($isUpdateHeader=="logoContent"){
+        $HeaderContent->header_id = $_GET['headerid'];
+        $HeaderContent->header_logo = $data["header_logo"];
+        checkId($HeaderContent->header_id);
+        $query = checkUpdateLogo($HeaderContent);
+        returnSuccess($HeaderContent, "headerContent", $query);
+    }
 }
 
 checkEndpoint();

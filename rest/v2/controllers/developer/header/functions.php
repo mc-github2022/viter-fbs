@@ -14,3 +14,10 @@ function checkUpdateText($object)
     checkQuery($query, "There's a problem processing your request. (update)");
     return $query;
 }
+
+function checkUpdateLogo($object)
+{
+    $query = $object->updateLogoContent();
+    checkQuery($query, "There's a problem processing your request. (update)");
+    return $query;
+}
