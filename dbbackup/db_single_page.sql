@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 02, 2024 at 03:30 AM
+-- Generation Time: Sep 09, 2024 at 08:46 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -71,9 +71,9 @@ CREATE TABLE `tbl_activity` (
 --
 
 INSERT INTO `tbl_activity` (`activity_id`, `activity_title`, `activity_text`, `activity_btn_text`, `activity_btn_link`, `activity_img`) VALUES
-(1, 'Team Building 2024', 'From May 15 to 17, our team gathered at La Luz Beach Resort for our…', 'Read More', '#readmore', '453384863_910940367711883_1032070777432874448_n.jpg'),
+(1, 'Team Building 2024', 'From May 15 to 17, our team gathered at La Luz Beach Resort for our…', 'Read More', '#readmore', '453604724_910940454378541_6684968991518378625_n.jpg'),
 (2, 'Annual Career Fest 2024 at STI College San Pablo', 'We are thrilled to share our recent participation in the Annual Career Fest 2024 at…', 'Read More', '#readmore', '453257538_910940217711898_3499163732690137684_n.jpg'),
-(3, 'FBS 5th Anniversary', 'Our 5th-year celebration at Frontline Business Solutions is a special time to look back on…', 'Read More', '#readmore', '453384863_910940367711883_1032070777432874448_n.jpg');
+(3, 'FBS 5th Anniversary', 'Our 5th-year celebration at Frontline Business Solutions is a special time to look back on…', 'Read More', '#readmore', '453484784_910940257711894_3648426308500912165_n.jpg');
 
 -- --------------------------------------------------------
 
@@ -117,6 +117,7 @@ CREATE TABLE `tbl_header` (
   `header_banner_text` varchar(1000) NOT NULL,
   `header_banner_btn_text` varchar(50) NOT NULL,
   `header_banner_btn_link` varchar(50) NOT NULL,
+  `header_logo` varchar(500) NOT NULL,
   `header_banner_img` varchar(500) NOT NULL,
   `header_banner_customfield_a` varchar(50) NOT NULL,
   `header_banner_customfield_b` varchar(50) NOT NULL,
@@ -131,8 +132,8 @@ CREATE TABLE `tbl_header` (
 -- Dumping data for table `tbl_header`
 --
 
-INSERT INTO `tbl_header` (`header_id`, `header_banner_title`, `header_banner_text`, `header_banner_btn_text`, `header_banner_btn_link`, `header_banner_img`, `header_banner_customfield_a`, `header_banner_customfield_b`, `header_banner_customfield_c`, `header_banner_customfield_d`, `header_banner_customfield_e`, `header_banner_customfield_f`, `header_banner_customfield_g`) VALUES
-(1, 'Excellence in Managed Services and Web Solution', 'Along with our website design & development solutions (Including website hosting, graphic design, and basic SEO services), FBS meets the needs of clients through recruiting and managing professionals who serve in a wide array of areas like bookkeeping and accounting, virtual assistant and data entry personnel. If you want excellent customer service and a dedicated professional working at a competitive price, we can meet your needs.', 'Our Service', '#services', 'fbs-banner-bg.png', 'asd', 'asdas', 'das', 'asd', 'asda', 'sda', 'sd');
+INSERT INTO `tbl_header` (`header_id`, `header_banner_title`, `header_banner_text`, `header_banner_btn_text`, `header_banner_btn_link`, `header_logo`, `header_banner_img`, `header_banner_customfield_a`, `header_banner_customfield_b`, `header_banner_customfield_c`, `header_banner_customfield_d`, `header_banner_customfield_e`, `header_banner_customfield_f`, `header_banner_customfield_g`) VALUES
+(1, 'Excellence in Managed Services and Web Solution', 'Along with our website design & development solutions (Including website hosting, graphic design, and basic SEO services), FBS meets the needs of clients through recruiting and managing professionals who serve in a wide array of areas like bookkeeping and accounting, virtual assistant and data entry personnel. If you want excellent customer service and a dedicated professional working at a competitive price, we can meet your needs.', 'Our Service', '#services', '', 'fbs-banner-bg.png', 'asd', 'asdas', 'das', 'asd', 'asda', 'sda', 'sd');
 
 -- --------------------------------------------------------
 
@@ -151,7 +152,7 @@ CREATE TABLE `tbl_service` (
   `service_includes_f` varchar(50) DEFAULT NULL,
   `service_includes_g` varchar(50) DEFAULT NULL,
   `service_includes_h` varchar(50) DEFAULT NULL,
-  `service_img` varchar(50) NOT NULL
+  `service_img` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
