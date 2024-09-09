@@ -3,6 +3,7 @@ import About from "@/components/pages/developer/about/About";
 import Activities from "@/components/pages/developer/activities/Activities";
 import Footer from "@/components/pages/developer/footer/Footer";
 import Header from "@/components/pages/developer/header/Header";
+import HeaderFullPage from "@/components/pages/developer/headerFullpage/HeaderFullPage";
 import Services from "@/components/pages/developer/services/Services";
 import Home from "@/components/pages/website/Home";
 
@@ -30,5 +31,9 @@ export const routesSystem = [
   {
     path: `${devNavUrl}/`,
     element: <Home />,
+  },
+  {
+    path: `${devNavUrl}/system/headerfull`,
+    element: <HeaderFullPage />,
   },
 ];
